@@ -8,36 +8,38 @@ description: Deployment guidelines for Flutter web applications
 
 ## Overview
 
-This project uses a **deployment branch strategy** for Flutter web releases:
+The `shop` Flutter web app uses a **deployment branch strategy**:
 - Main development happens on `main` branch
-- Production builds are committed to `deployment` branch
+- Production builds are committed to `deployment/shop` branch
 - Automated deployment via GitHub Pages or similar static hosting
 
 ## Deployment Process
 
 ### Manual Deployment
 
+Run from the **repository root** (the script deploys the app in `shop/`):
+
 ```bash
-# Deploy current version to production
-./scripts/deploy.sh
+# Deploy current version to production (auto-increment patch)
+./.cursor/commands/scripts/deploy.sh
 
 # Deploy with specific version
-./scripts/deploy.sh 1.2.3
+./.cursor/commands/scripts/deploy.sh 1.2.3
 
 # Test deployment (dry-run)
-./scripts/deploy.sh --dry-run
+./.cursor/commands/scripts/deploy.sh --dry-run
 ```
 
 ### Deployment Steps
 
 1. **Build Flutter web app**
-   - Command: `fvm flutter build web --release --wasm`
-   - Generates optimized production build in `build/web/`
+   - Command (from `shop/`): `fvm flutter build web --release --wasm`
+   - Generates optimized production build in `shop/build/web/`
    - Uses WebAssembly for better performance
    - Includes CanvasKit renderer and Skwasm
 
 2. **Create temporary deployment directory**
-   - Copies only the contents of `build/web/` to temp directory
+   - Copies only the contents of `shop/build/web/` to temp directory
    - No source code or project structure included
 
 3. **Initialize git in temp directory**
@@ -45,12 +47,12 @@ This project uses a **deployment branch strategy** for Flutter web releases:
    - Adds remote pointing to origin
 
 4. **Commit build artifacts**
-   - Commits only build contents to `deployment` branch
+   - Commits only build contents to `deployment/shop` branch
    - Uses semantic commit message: `chore(release): <version>`
    - Includes timestamp in commit body
 
 5. **Push to remote**
-   - Force pushes to `deployment` branch
+   - Force pushes to `deployment/shop` branch
    - Triggers hosting service rebuild (GitHub Pages, Netlify, etc.)
    - Deployment branch contains only static files, no source code
 
@@ -64,15 +66,15 @@ This project uses a **deployment branch strategy** for Flutter web releases:
 - PATCH: Bug fixes
 
 ### Version Management
-- Version stored in `pubspec.yaml`
-- Script auto-increments patch version if not specified
-- Manual version override: `./scripts/deploy.sh 2.0.0`
+- Version stored in `shop/pubspec.yaml`
+- Deploy script auto-increments patch version if not specified
+- Manual version override: `./.cursor/commands/scripts/deploy.sh 2.0.0`
 
 ## Deployment Branch
 
 ### Branch Strategy
 - `main`: Development branch (no build artifacts)
-- `deployment`: Production branch (contains ONLY contents of `build/web/`)
+- `deployment/shop`: Production branch (contains ONLY contents of `shop/build/web/`)
 - Deployment branch is an orphan branch (clean history, no source code)
 - Deployment branch is force-pushed on each release
 
@@ -85,55 +87,36 @@ This project uses a **deployment branch strategy** for Flutter web releases:
 ### .gitignore Configuration
 ```gitignore
 # Main branch - ignore build artifacts
-build/
+shop/build/
 ```
 
-**Note:** Build artifacts are never committed to `main`, only deployed to `deployment` branch
+**Note:** Build artifacts are never committed to `main`, only deployed to `deployment/shop` branch
 
 ## Hosting Providers
 
 ### GitHub Pages
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to GitHub Pages
-on:
-  push:
-    branches: [deployment]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
-```
+- Source branch: `deployment/shop`
+- Publish directory: `/` (root of deployment branch)
 
 ### Netlify
-- Branch: `deployment`
-- Build directory: `build/web`
+- Branch: `deployment/shop`
+- Build directory: `/` (pre-built)
 - Build command: (none - pre-built)
 
 ### Firebase Hosting
-```bash
-# Deploy from deployment branch
-git checkout deployment
-firebase deploy --only hosting
-```
+- Use `deployment/shop` branch as source for static hosting
 
 ## Pre-Deployment Checklist
 
-Before running deployment script:
+Before running deploy command from repo root:
 
-- [ ] All tests pass: `fvm flutter test`
-- [ ] Code is formatted: `fvm dart format .`
-- [ ] No linter errors: `fvm dart analyze`
+- [ ] All tests pass (from `shop/`): `fvm flutter test`
+- [ ] Code is formatted (from `shop/`): `fvm dart format .`
+- [ ] No linter errors (from `shop/`): `fvm dart analyze`
 - [ ] All changes committed to `main`
-- [ ] Update version in `pubspec.yaml` (if needed)
-- [ ] Test build locally: `fvm flutter build web --release --wasm`
-- [ ] Test built app: `cd build/web && python3 -m http.server 8000`
+- [ ] Update version in `shop/pubspec.yaml` (if needed)
+- [ ] Test build locally (from `shop/`): `fvm flutter build web --release --wasm`
+- [ ] Test built app: `cd shop/build/web && python3 -m http.server 8000`
 
 ## Post-Deployment Verification
 
@@ -153,9 +136,9 @@ If deployment fails:
 
 ```bash
 # Rollback to previous commit on deployment branch
-git checkout deployment
+git checkout deployment/shop
 git reset --hard HEAD~1
-git push --force origin deployment
+git push --force origin deployment/shop
 ```
 
 ## Environment Variables
@@ -184,18 +167,20 @@ class Environment {
 
 ### Build Fails
 ```bash
-# Clean and rebuild
+# Clean and rebuild (from shop/)
+cd shop
 fvm flutter clean
 fvm flutter pub get
 fvm flutter build web --release --wasm
+cd ..
 ```
 
 ### Git Issues
 ```bash
 # Reset deployment branch
-git branch -D deployment
-git push origin --delete deployment
-./scripts/deploy.sh
+git branch -D deployment/shop
+git push origin --delete deployment/shop
+./.cursor/commands/scripts/deploy.sh
 ```
 
 ### Large Build Size
@@ -207,7 +192,7 @@ git push origin --delete deployment
 ## Security Considerations
 
 ### Deployment Branch Protection
-- ⚠️ **Do NOT protect deployment branch** - needs force push
+- ⚠️ **Do NOT protect deployment/shop branch** - needs force push
 - Protect `main` branch instead
 - Require pull requests for `main`
 - Run CI/CD checks on `main`
@@ -253,9 +238,9 @@ git push origin --delete deployment
 ## Continuous Deployment
 
 ### Automated Deployment
-```bash
-# GitHub Actions workflow
-name: Auto Deploy
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy
 on:
   push:
     tags:
@@ -265,27 +250,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
       - name: Deploy
-        run: ./scripts/deploy.sh ${{ github.ref_name }}
+        run: ./.cursor/commands/scripts/deploy.sh ${{ github.ref_name }}
 ```
 
 ## Summary
 
-**Deployment Workflow:**
+**Deployment Workflow (shop app):**
 ```
 1. Develop on main branch
-2. Run tests and linting
-3. Update version in pubspec.yaml
-4. Run: ./scripts/deploy.sh
-5. Script builds, commits to deployment branch, pushes
+2. Run tests and linting from shop/
+3. Update version in shop/pubspec.yaml
+4. From repo root: ./.cursor/commands/scripts/deploy.sh
+5. Script builds shop/, commits to deployment/shop branch, pushes
 6. Hosting provider rebuilds site
 7. Verify deployment
 ```
 
 **Key Commands:**
-- Deploy: `./scripts/deploy.sh`
-- Deploy with version: `./scripts/deploy.sh 1.2.3`
-- Test: `./scripts/deploy.sh --dry-run`
-- Rollback: `git checkout deployment && git reset --hard HEAD~1`
+- Deploy: `./.cursor/commands/scripts/deploy.sh`
+- Deploy with version: `./.cursor/commands/scripts/deploy.sh 1.2.3`
+- Test: `./.cursor/commands/scripts/deploy.sh --dry-run`
+- Rollback: `git checkout deployment/shop && git reset --hard HEAD~1`
+
+For full deploy command details, see `.cursor/commands/deploy.md`.
