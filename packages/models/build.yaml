@@ -1,0 +1,32 @@
+# Build configuration for code generation
+# This configures freezed to only run on specific files to improve build performance
+
+targets:
+  $default:
+    builders:
+      # Freezed builder - only run on state, cubit, and model files
+      freezed:
+        enabled: true
+        generate_for:
+          - lib/**_model.dart
+        options:
+          # Generate copyWith method
+          copy_with: true
+          # Generate equality and hash code
+          equal: true
+          # Generate when/map methods for sealed classes
+          map: true
+          # Generate maybeWhen/maybeMap methods
+          maybe_map: true
+          # Generate toString method
+          to_string: true
+      
+      # Json Serializable - only if needed
+      json_serializable:
+        enabled: true
+        generate_for:
+          - lib/**_model.dart
+        options:
+          explicit_to_json: true
+          field_rename: snake
+
