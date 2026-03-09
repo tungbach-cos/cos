@@ -1,5 +1,5 @@
+import 'package:models/models.dart';
 import 'package:supabase/supabase.dart';
-import 'package:tungbach/datasource/product/models/product_model.dart';
 import 'package:tungbach/datasource/product/product_datasource.dart';
 
 final class ProductDatasourceImpl implements ProductDatasource {

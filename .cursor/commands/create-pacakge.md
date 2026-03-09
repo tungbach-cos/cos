@@ -31,7 +31,17 @@ When the user runs `/create-pacakge`:
    - `<package_description>` with the generated description (quote it so spaces are safe)
    - `<package_location>` with the user’s parent directory; the full output path is `package_location/package_name`
 
-4. **Confirm.** Tell the user the package was created at `package_location/package_name` and remind them to add it to the workspace or `pubspec.yaml` if needed.
+4. **Clean up generated package.** From the repository root, delete inside `package_location/package_name`:
+   - The **`.github`** directory (workflows, issue templates, etc.)
+   - The **`coverage_badge.svg`** file
+
+   Example (for `packages/cos_shared`):
+   ```bash
+   rm -rf <package_location>/<package_name>/.github
+   rm -f <package_location>/<package_name>/coverage_badge.svg
+   ```
+
+5. **Confirm.** Tell the user the package was created at `package_location/package_name` and remind them to add it to the workspace or `pubspec.yaml` if needed.
 
 ## Prerequisites
 
@@ -53,3 +63,5 @@ User: "Create package `cos_shared` in `packages`"
     --description "Shared utilities, models, and types for the Cos project" \
     -o packages/cos_shared
   ```
+
+  Then remove `.github` and `coverage_badge.svg` from `packages/cos_shared`.

@@ -1,4 +1,4 @@
-import 'package:tungbach/datasource/product/models/product_model.dart';
+import 'package:models/models.dart';
 
 abstract interface class ProductDatasource {
   Future<List<ProductModel>> getProducts();
