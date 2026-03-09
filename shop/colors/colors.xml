@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#2DA884</color>
+    <color name="neutral_100">#ffffff</color>
+    <color name="neutral_200">#f7fcfa</color>
+    <color name="neutral_300">#eff6f5</color>
+    <color name="neutral_400">#d9e9e5</color>
+    <color name="neutral_500">#a0bdb6</color>
+    <color name="neutral_600">#637a75</color>
+    <color name="neutral_700">#4b665f</color>
+    <color name="neutral_800">#142a25</color>
+    <color name="transparent">#00000000</color>
+</resources>

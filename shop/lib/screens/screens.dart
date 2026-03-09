@@ -1,0 +1,10 @@
+export 'about/about.dart';
+export 'contact/contact.dart';
+export 'home/home.dart';
+export 'not_found/not_found.dart';
+export 'privacy_policy/privacy_policy.dart';
+export 'product_detail/product_detail.dart';
+export 'services/services.dart';
+export 'shop/shop.dart';
+export 'splash/splash.dart';
+export 'terms_of_service/terms_of_service.dart';
