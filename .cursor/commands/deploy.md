@@ -4,31 +4,33 @@
 
 ## Quick Usage
 
+Run from the **repository root** (the script deploys the app in `shop/`):
+
 ```bash
 # Auto-increment version (1.0.0 → 1.0.1)
-./scripts/deploy.sh
+./.cursor/commands/scripts/deploy.sh
 
 # Deploy specific version
-./scripts/deploy.sh 1.2.3
+./.cursor/commands/scripts/deploy.sh 1.2.3
 
 # Test without deploying
-./scripts/deploy.sh --dry-run
+./.cursor/commands/scripts/deploy.sh --dry-run
 ```
 
 ## What This Command Does
 
-The deploy command automates the entire Flutter web deployment process:
+The deploy command automates the entire Flutter web deployment process for the **shop** app (`shop/`):
 
-1. **Validates environment** - Checks FVM, Flutter, Git, and working tree
-2. **Builds production app** - Runs `fvm flutter build web --release --wasm`
-3. **Creates clean deployment** - Copies only `build/web/` contents to temporary directory
+1. **Validates environment** - Checks FVM, Flutter, Git, and working tree (from repo root)
+2. **Builds production app** - Runs `fvm flutter build web --release --wasm` in `shop/`
+3. **Creates clean deployment** - Copies only `shop/build/web/` contents to temporary directory
 4. **Commits to deployment branch** - Creates orphan branch with only static files
-5. **Pushes to remote** - Force pushes to `deployment` branch
+5. **Pushes to remote** - Force pushes to `deployment/shop` branch
 6. **Cleans up** - Removes temporary files and returns to original branch
 
 ## Deployment Branch
 
-The `deployment` branch contains **only** production build artifacts:
+The `deployment/shop` branch contains **only** production build artifacts:
 
 ✅ **Included:**
 - `index.html` - Main application entry point
@@ -52,9 +54,9 @@ Before deploying, ensure:
 
 - [ ] **FVM installed** - Flutter Version Management
 - [ ] **Clean working tree** - All changes committed to `main`
-- [ ] **Tests passing** - Run `fvm flutter test`
-- [ ] **No linter errors** - Run `fvm dart analyze`
-- [ ] **Code formatted** - Run `fvm dart format .`
+- [ ] **Tests passing** - From `shop/`: `fvm flutter test`
+- [ ] **No linter errors** - From `shop/`: `fvm dart analyze`
+- [ ] **Code formatted** - From `shop/`: `fvm dart format .`
 
 ## Versioning
 
@@ -70,16 +72,16 @@ The script auto-increments the patch version if not specified.
 
 ```bash
 # Show help
-./scripts/deploy.sh --help
+./.cursor/commands/scripts/deploy.sh --help
 
 # Run self-tests
-./scripts/deploy.sh --test
+./.cursor/commands/scripts/deploy.sh --test
 
 # Dry run (no changes)
-./scripts/deploy.sh --dry-run
+./.cursor/commands/scripts/deploy.sh --dry-run
 
 # Deploy with version
-./scripts/deploy.sh 2.0.0
+./.cursor/commands/scripts/deploy.sh 2.0.0
 ```
 
 ## Deployment Workflow
@@ -91,14 +93,15 @@ The script auto-increments the patch version if not specified.
                  │
                  ▼
 ┌─────────────────────────────────────────────────────┐
-│ 2. Run: ./scripts/deploy.sh                         │
+│ 2. From repo root: ./.cursor/commands/scripts/      │
+│    deploy.sh (builds shop/ → deployment/shop)      │
 └────────────────┬────────────────────────────────────┘
                  │
                  ▼
 ┌─────────────────────────────────────────────────────┐
-│ 3. Script builds and deploys to deployment branch   │
+│ 3. Script builds and deploys to deployment/shop     │
 │    - Only static files committed                    │
-│    - Force push to deployment branch                │
+│    - Force push to deployment/shop branch           │
 └────────────────┬────────────────────────────────────┘
                  │
                  ▼
@@ -119,7 +122,7 @@ The script auto-increments the patch version if not specified.
 
 1. Go to repository **Settings** → **Pages**
 2. Source: **Deploy from a branch**
-3. Branch: `deployment` / `/ (root)`
+3. Branch: `deployment/shop` / `/ (root)`
 4. Save
 
 URL: `https://<username>.github.io/<repository>/`
@@ -127,14 +130,14 @@ URL: `https://<username>.github.io/<repository>/`
 ### Netlify
 
 1. **New site from Git**
-2. Branch: `deployment`
+2. Branch: `deployment/shop`
 3. Build command: *(leave empty - pre-built)*
 4. Publish directory: `/` *(root)*
 
 ### Vercel
 
 1. **Import Git Repository**
-2. Branch: `deployment`
+2. Branch: `deployment/shop`
 3. Root Directory: `./`
 4. Build command: *(leave empty)*
 
@@ -149,7 +152,7 @@ URL: `https://<username>.github.io/<repository>/`
 git status
 git add .
 git commit -m "feat: your changes"
-./scripts/deploy.sh
+./.cursor/commands/scripts/deploy.sh
 ```
 
 ### "Flutter build failed"
@@ -158,13 +161,12 @@ git commit -m "feat: your changes"
 
 **Solution:**
 ```bash
-# Clean and rebuild
+cd shop
 fvm flutter clean
 fvm flutter pub get
 fvm flutter build web --release --wasm
-
-# Check for errors
 fvm dart analyze
+cd ..
 ```
 
 ### "FVM not found"
@@ -177,7 +179,7 @@ fvm dart analyze
 brew install fvm  # macOS
 # or visit: https://fvm.app
 
-# Install Flutter via FVM
+# Install Flutter via FVM (from repo root or shop/)
 fvm install
 fvm use stable
 ```
@@ -186,10 +188,10 @@ fvm use stable
 
 **Problem:** Script not executable
 
-**Solution:**
+**Solution:** (from repo root)
 ```bash
-chmod +x scripts/deploy.sh
-./scripts/deploy.sh
+chmod +x .cursor/commands/scripts/deploy.sh
+./.cursor/commands/scripts/deploy.sh
 ```
 
 ## Rollback Procedure
@@ -198,13 +200,13 @@ If deployment fails or has issues:
 
 ```bash
 # 1. Switch to deployment branch
-git checkout deployment
+git checkout deployment/shop
 
 # 2. Reset to previous commit
 git reset --hard HEAD~1
 
 # 3. Force push
-git push --force origin deployment
+git push --force origin deployment/shop
 
 # 4. Return to main
 git checkout main
@@ -212,17 +214,15 @@ git checkout main
 
 ## Testing Locally
 
-Before deploying, test the build locally:
+Before deploying, test the build locally from the **shop** app:
 
 ```bash
-# Build the app with WebAssembly
+cd shop
 fvm flutter build web --release --wasm
-
-# Serve locally
 cd build/web
 python3 -m http.server 8000
-
 # Open browser to http://localhost:8000
+cd ../..
 ```
 
 Test all critical functionality before deploying to production.
@@ -258,7 +258,7 @@ Set these in your hosting provider's dashboard, not in code.
 ## Security Notes
 
 - ⚠️ **Never commit secrets** to any branch
-- ⚠️ **Don't protect deployment branch** - needs force push
+- ⚠️ **Don't protect deployment/shop branch** - needs force push
 - ✅ **Protect main branch** - require pull requests
 - ✅ **Use environment variables** for sensitive data
 
@@ -294,14 +294,14 @@ jobs:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
       - name: Deploy
-        run: ./scripts/deploy.sh ${{ github.ref_name }}
+        run: ./.cursor/commands/scripts/deploy.sh ${{ github.ref_name }}
 ```
 
 ## Additional Resources
 
 - **Deployment Rules**: `.cursor/rules/deployment.mdc`
 - **Full Deployment Guide**: `README_DEPLOYMENT.md`
-- **Deployment Script**: `scripts/deploy.sh`
+- **Deployment Script**: `.cursor/commands/scripts/deploy.sh`
 - **Semantic Versioning**: https://semver.org/
 
 ## Examples
@@ -309,8 +309,8 @@ jobs:
 ### Basic Deployment
 
 ```bash
-# Auto-increment and deploy
-./scripts/deploy.sh
+# From repo root: auto-increment and deploy (shop app)
+./.cursor/commands/scripts/deploy.sh
 
 # Output:
 # 🚀 Starting deployment process...
@@ -325,21 +325,17 @@ jobs:
 ### Version Bump
 
 ```bash
-# Deploy major version
-./scripts/deploy.sh 2.0.0
-
-# Deploy minor version
-./scripts/deploy.sh 1.1.0
-
-# Deploy patch version
-./scripts/deploy.sh 1.0.1
+# From repo root
+./.cursor/commands/scripts/deploy.sh 2.0.0
+./.cursor/commands/scripts/deploy.sh 1.1.0
+./.cursor/commands/scripts/deploy.sh 1.0.1
 ```
 
 ### Testing Before Deploy
 
 ```bash
-# Dry run to see what would happen
-./scripts/deploy.sh --dry-run
+# Dry run to see what would happen (from repo root)
+./.cursor/commands/scripts/deploy.sh --dry-run
 
 # Output shows all steps without making changes
 # [DRY RUN] Would run: fvm flutter build web --release

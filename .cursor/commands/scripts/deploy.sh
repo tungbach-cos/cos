@@ -6,11 +6,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly SCRIPT_DIR
 SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 readonly SCRIPT_NAME
-PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+# Flutter app lives in shop/ (repo root is SCRIPT_DIR/../../..)
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+readonly REPO_ROOT
+PROJECT_ROOT="${REPO_ROOT}/shop"
 readonly PROJECT_ROOT
 
 # Configuration
-readonly DEPLOYMENT_BRANCH="deployment"
+readonly DEPLOYMENT_BRANCH="deployment/shop"
 readonly BUILD_DIR="build/web"
 readonly PUBSPEC_FILE="pubspec.yaml"
 DRY_RUN=0
@@ -123,7 +126,7 @@ DEPLOYMENT BRANCH:
     Commit Format: chore(release): <version>
     
 MORE INFO:
-    See .cursor/rules/deployment.mdc for detailed deployment guide
+    See .cursor/skills/deployment/SKILL.md for detailed deployment guide
 
 EOF
 }
@@ -410,7 +413,11 @@ parse_args() {
 # Main function
 main() {
     rocket_launch "Starting deployment process..."
-    
+
+    # Run from repo root so git and paths are correct
+    cd "${REPO_ROOT}" || die "Failed to change to repo root"
+    info "Project (Flutter app): ${PROJECT_ROOT}"
+
     # Parse arguments
     local provided_version
     provided_version=$(parse_args "$@")
