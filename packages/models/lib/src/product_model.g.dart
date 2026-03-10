@@ -6,11 +6,14 @@ part of 'product_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
-    _$ProductModelImpl(
+_ProductModel _$ProductModelFromJson(Map<String, dynamic> json) =>
+    _ProductModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      unitId: (json['unit_id'] as num).toInt(),
+      category: CategoryModel.fromJson(
+        json['category'] as Map<String, dynamic>,
+      ),
+      unit: UnitModel.fromJson(json['unit'] as Map<String, dynamic>),
       sku: json['sku'] as String,
       fullDescription: json['full_description'] as String?,
       features: (json['features'] as List<dynamic>?)
@@ -25,14 +28,14 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
-      categoryId: (json['category_id'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
+Map<String, dynamic> _$ProductModelToJson(_ProductModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'unit_id': instance.unitId,
+      'category': instance.category.toJson(),
+      'unit': instance.unit.toJson(),
       'sku': instance.sku,
       'full_description': instance.fullDescription,
       'features': instance.features,
@@ -41,5 +44,4 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
       'price': instance.price,
       'created_at': instance.createdAt?.toIso8601String(),
       'updated_at': instance.updatedAt?.toIso8601String(),
-      'category_id': instance.categoryId,
     };

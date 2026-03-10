@@ -5,7 +5,7 @@ part 'unit_model.g.dart';
 
 /// Unit of measure or type for products.
 @Freezed(fromJson: true, toJson: true)
-class UnitModel with _$UnitModel {
+abstract class UnitModel with _$UnitModel {
   /// Creates a [UnitModel] from JSON.
   const factory UnitModel({
     required int id,

@@ -27,7 +27,7 @@ targets:
       injectable_generator:injectable:
         enabled: true
         generate_for:
-          - lib/injection.dart
+          - lib/core/di/injection.dart
       
       # Json Serializable - only if needed
       json_serializable:

@@ -5,7 +5,7 @@ part 'category_model.g.dart';
 
 /// Product category.
 @Freezed(fromJson: true, toJson: true)
-class CategoryModel with _$CategoryModel {
+abstract class CategoryModel with _$CategoryModel {
   /// Creates a [CategoryModel] from JSON.
   const factory CategoryModel({
     required int id,

@@ -31,17 +31,22 @@ When the user runs `/create-pacakge`:
    - `<package_description>` with the generated description (quote it so spaces are safe)
    - `<package_location>` with the user’s parent directory; the full output path is `package_location/package_name`
 
-4. **Clean up generated package.** From the repository root, delete inside `package_location/package_name`:
-   - The **`.github`** directory (workflows, issue templates, etc.)
-   - The **`coverage_badge.svg`** file
+4. **Clean up generated package.** From the repository root, inside `package_location/package_name`:
+   - Delete the **`.github`** directory (workflows, issue templates, etc.)
+   - Delete the **`coverage_badge.svg`** file
+   - Remove the `mocktail` and `test` entries from `dev_dependencies` in `pubspec.yaml`
+   - Delete the `test` directory
 
    Example (for `packages/cos_shared`):
    ```bash
    rm -rf <package_location>/<package_name>/.github
    rm -f <package_location>/<package_name>/coverage_badge.svg
+   rm -rf <package_location>/<package_name>/test
    ```
 
-5. **Confirm.** Tell the user the package was created at `package_location/package_name` and remind them to add it to the workspace or `pubspec.yaml` if needed.
+   Then open `<package_location>/<package_name>/pubspec.yaml` and remove the `mocktail` and `test` dev_dependencies.
+
+5. **Confirm.** Tell the user the package was created at `package_location/package_name` with test tooling removed, and remind them to add it to the workspace or `pubspec.yaml` if needed.
 
 ## Prerequisites
 
