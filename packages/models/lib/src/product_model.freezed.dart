@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductModel {
 
- int get id; String get name; CategoryModel get category; UnitModel get unit; String get sku; String? get fullDescription; List<String>? get features; Map<String, dynamic>? get specifications; String? get imageUrl; double? get price; DateTime? get createdAt; DateTime? get updatedAt;
+ int? get id; String? get name; CategoryModel? get category; UnitModel? get unit; String? get sku; String? get fullDescription; List<String>? get features; Map<String, dynamic>? get specifications; String? get imageUrl; double? get price; DateTime? get createdAt; DateTime? get updatedAt;
 /// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,11 +48,11 @@ abstract mixin class $ProductModelCopyWith<$Res>  {
   factory $ProductModelCopyWith(ProductModel value, $Res Function(ProductModel) _then) = _$ProductModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, CategoryModel category, UnitModel unit, String sku, String? fullDescription, List<String>? features, Map<String, dynamic>? specifications, String? imageUrl, double? price, DateTime? createdAt, DateTime? updatedAt
+ int? id, String? name, CategoryModel? category, UnitModel? unit, String? sku, String? fullDescription, List<String>? features, Map<String, dynamic>? specifications, String? imageUrl, double? price, DateTime? createdAt, DateTime? updatedAt
 });
 
 
-$CategoryModelCopyWith<$Res> get category;$UnitModelCopyWith<$Res> get unit;
+$CategoryModelCopyWith<$Res>? get category;$UnitModelCopyWith<$Res>? get unit;
 
 }
 /// @nodoc
@@ -65,14 +65,14 @@ class _$ProductModelCopyWithImpl<$Res>
 
 /// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? category = null,Object? unit = null,Object? sku = null,Object? fullDescription = freezed,Object? features = freezed,Object? specifications = freezed,Object? imageUrl = freezed,Object? price = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? category = freezed,Object? unit = freezed,Object? sku = freezed,Object? fullDescription = freezed,Object? features = freezed,Object? specifications = freezed,Object? imageUrl = freezed,Object? price = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as CategoryModel,unit: null == unit ? _self.unit : unit // ignore: cast_nullable_to_non_nullable
-as UnitModel,sku: null == sku ? _self.sku : sku // ignore: cast_nullable_to_non_nullable
-as String,fullDescription: freezed == fullDescription ? _self.fullDescription : fullDescription // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel?,unit: freezed == unit ? _self.unit : unit // ignore: cast_nullable_to_non_nullable
+as UnitModel?,sku: freezed == sku ? _self.sku : sku // ignore: cast_nullable_to_non_nullable
+as String?,fullDescription: freezed == fullDescription ? _self.fullDescription : fullDescription // ignore: cast_nullable_to_non_nullable
 as String?,features: freezed == features ? _self.features : features // ignore: cast_nullable_to_non_nullable
 as List<String>?,specifications: freezed == specifications ? _self.specifications : specifications // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -86,18 +86,24 @@ as DateTime?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$CategoryModelCopyWith<$Res> get category {
-  
-  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+$CategoryModelCopyWith<$Res>? get category {
+    if (_self.category == null) {
+    return null;
+  }
+
+  return $CategoryModelCopyWith<$Res>(_self.category!, (value) {
     return _then(_self.copyWith(category: value));
   });
 }/// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UnitModelCopyWith<$Res> get unit {
-  
-  return $UnitModelCopyWith<$Res>(_self.unit, (value) {
+$UnitModelCopyWith<$Res>? get unit {
+    if (_self.unit == null) {
+    return null;
+  }
+
+  return $UnitModelCopyWith<$Res>(_self.unit!, (value) {
     return _then(_self.copyWith(unit: value));
   });
 }
@@ -182,7 +188,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  CategoryModel category,  UnitModel unit,  String sku,  String? fullDescription,  List<String>? features,  Map<String, dynamic>? specifications,  String? imageUrl,  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? name,  CategoryModel? category,  UnitModel? unit,  String? sku,  String? fullDescription,  List<String>? features,  Map<String, dynamic>? specifications,  String? imageUrl,  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProductModel() when $default != null:
 return $default(_that.id,_that.name,_that.category,_that.unit,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.createdAt,_that.updatedAt);case _:
@@ -203,7 +209,7 @@ return $default(_that.id,_that.name,_that.category,_that.unit,_that.sku,_that.fu
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  CategoryModel category,  UnitModel unit,  String sku,  String? fullDescription,  List<String>? features,  Map<String, dynamic>? specifications,  String? imageUrl,  double? price,  DateTime? createdAt,  DateTime? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? name,  CategoryModel? category,  UnitModel? unit,  String? sku,  String? fullDescription,  List<String>? features,  Map<String, dynamic>? specifications,  String? imageUrl,  double? price,  DateTime? createdAt,  DateTime? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _ProductModel():
 return $default(_that.id,_that.name,_that.category,_that.unit,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.createdAt,_that.updatedAt);case _:
@@ -223,7 +229,7 @@ return $default(_that.id,_that.name,_that.category,_that.unit,_that.sku,_that.fu
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  CategoryModel category,  UnitModel unit,  String sku,  String? fullDescription,  List<String>? features,  Map<String, dynamic>? specifications,  String? imageUrl,  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? name,  CategoryModel? category,  UnitModel? unit,  String? sku,  String? fullDescription,  List<String>? features,  Map<String, dynamic>? specifications,  String? imageUrl,  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _ProductModel() when $default != null:
 return $default(_that.id,_that.name,_that.category,_that.unit,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.createdAt,_that.updatedAt);case _:
@@ -238,14 +244,14 @@ return $default(_that.id,_that.name,_that.category,_that.unit,_that.sku,_that.fu
 @JsonSerializable()
 
 class _ProductModel implements ProductModel {
-  const _ProductModel({required this.id, required this.name, required this.category, required this.unit, required this.sku, this.fullDescription, final  List<String>? features, final  Map<String, dynamic>? specifications, this.imageUrl, this.price, this.createdAt, this.updatedAt}): _features = features,_specifications = specifications;
+  const _ProductModel({this.id, this.name, this.category, this.unit, this.sku, this.fullDescription, final  List<String>? features, final  Map<String, dynamic>? specifications, this.imageUrl, this.price, this.createdAt, this.updatedAt}): _features = features,_specifications = specifications;
   factory _ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
 
-@override final  int id;
-@override final  String name;
-@override final  CategoryModel category;
-@override final  UnitModel unit;
-@override final  String sku;
+@override final  int? id;
+@override final  String? name;
+@override final  CategoryModel? category;
+@override final  UnitModel? unit;
+@override final  String? sku;
 @override final  String? fullDescription;
  final  List<String>? _features;
 @override List<String>? get features {
@@ -303,11 +309,11 @@ abstract mixin class _$ProductModelCopyWith<$Res> implements $ProductModelCopyWi
   factory _$ProductModelCopyWith(_ProductModel value, $Res Function(_ProductModel) _then) = __$ProductModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, CategoryModel category, UnitModel unit, String sku, String? fullDescription, List<String>? features, Map<String, dynamic>? specifications, String? imageUrl, double? price, DateTime? createdAt, DateTime? updatedAt
+ int? id, String? name, CategoryModel? category, UnitModel? unit, String? sku, String? fullDescription, List<String>? features, Map<String, dynamic>? specifications, String? imageUrl, double? price, DateTime? createdAt, DateTime? updatedAt
 });
 
 
-@override $CategoryModelCopyWith<$Res> get category;@override $UnitModelCopyWith<$Res> get unit;
+@override $CategoryModelCopyWith<$Res>? get category;@override $UnitModelCopyWith<$Res>? get unit;
 
 }
 /// @nodoc
@@ -320,14 +326,14 @@ class __$ProductModelCopyWithImpl<$Res>
 
 /// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? category = null,Object? unit = null,Object? sku = null,Object? fullDescription = freezed,Object? features = freezed,Object? specifications = freezed,Object? imageUrl = freezed,Object? price = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? category = freezed,Object? unit = freezed,Object? sku = freezed,Object? fullDescription = freezed,Object? features = freezed,Object? specifications = freezed,Object? imageUrl = freezed,Object? price = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_ProductModel(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as CategoryModel,unit: null == unit ? _self.unit : unit // ignore: cast_nullable_to_non_nullable
-as UnitModel,sku: null == sku ? _self.sku : sku // ignore: cast_nullable_to_non_nullable
-as String,fullDescription: freezed == fullDescription ? _self.fullDescription : fullDescription // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as CategoryModel?,unit: freezed == unit ? _self.unit : unit // ignore: cast_nullable_to_non_nullable
+as UnitModel?,sku: freezed == sku ? _self.sku : sku // ignore: cast_nullable_to_non_nullable
+as String?,fullDescription: freezed == fullDescription ? _self.fullDescription : fullDescription // ignore: cast_nullable_to_non_nullable
 as String?,features: freezed == features ? _self._features : features // ignore: cast_nullable_to_non_nullable
 as List<String>?,specifications: freezed == specifications ? _self._specifications : specifications // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -342,18 +348,24 @@ as DateTime?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$CategoryModelCopyWith<$Res> get category {
-  
-  return $CategoryModelCopyWith<$Res>(_self.category, (value) {
+$CategoryModelCopyWith<$Res>? get category {
+    if (_self.category == null) {
+    return null;
+  }
+
+  return $CategoryModelCopyWith<$Res>(_self.category!, (value) {
     return _then(_self.copyWith(category: value));
   });
 }/// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UnitModelCopyWith<$Res> get unit {
-  
-  return $UnitModelCopyWith<$Res>(_self.unit, (value) {
+$UnitModelCopyWith<$Res>? get unit {
+    if (_self.unit == null) {
+    return null;
+  }
+
+  return $UnitModelCopyWith<$Res>(_self.unit!, (value) {
     return _then(_self.copyWith(unit: value));
   });
 }

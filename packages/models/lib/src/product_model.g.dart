@@ -8,13 +8,15 @@ part of 'product_model.dart';
 
 _ProductModel _$ProductModelFromJson(Map<String, dynamic> json) =>
     _ProductModel(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      category: CategoryModel.fromJson(
-        json['category'] as Map<String, dynamic>,
-      ),
-      unit: UnitModel.fromJson(json['unit'] as Map<String, dynamic>),
-      sku: json['sku'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      category: json['category'] == null
+          ? null
+          : CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
+      unit: json['unit'] == null
+          ? null
+          : UnitModel.fromJson(json['unit'] as Map<String, dynamic>),
+      sku: json['sku'] as String?,
       fullDescription: json['full_description'] as String?,
       features: (json['features'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -32,16 +34,16 @@ _ProductModel _$ProductModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ProductModelToJson(_ProductModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'category': instance.category.toJson(),
-      'unit': instance.unit.toJson(),
-      'sku': instance.sku,
-      'full_description': instance.fullDescription,
-      'features': instance.features,
-      'specifications': instance.specifications,
-      'image_url': instance.imageUrl,
-      'price': instance.price,
-      'created_at': instance.createdAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
+      'id': ?instance.id,
+      'name': ?instance.name,
+      'category': ?instance.category?.toJson(),
+      'unit': ?instance.unit?.toJson(),
+      'sku': ?instance.sku,
+      'full_description': ?instance.fullDescription,
+      'features': ?instance.features,
+      'specifications': ?instance.specifications,
+      'image_url': ?instance.imageUrl,
+      'price': ?instance.price,
+      'created_at': ?instance.createdAt?.toIso8601String(),
+      'updated_at': ?instance.updatedAt?.toIso8601String(),
     };

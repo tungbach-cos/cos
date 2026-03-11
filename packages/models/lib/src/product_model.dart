@@ -11,11 +11,11 @@ part 'product_model.g.dart';
 abstract class ProductModel with _$ProductModel {
   /// Creates a [ProductModel] from JSON (e.g. API or database).
   const factory ProductModel({
-    required int id,
-    required String name,
-    required CategoryModel category,
-    required UnitModel unit,
-    required String sku,
+    int? id,
+    String? name,
+    CategoryModel? category,
+    UnitModel? unit,
+    String? sku,
     String? fullDescription,
     List<String>? features,
     Map<String, dynamic>? specifications,
