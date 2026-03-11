@@ -1,0 +1,42 @@
+---
+description: Development workflow and conventions for the cos API, datasource, domain, and models packages
+alwaysApply: true
+---
+
+# Development Workflow for cos
+
+- **Core 3‑step loop (repeat for every change)**
+  1. **Analyze requirements**: read the request, inspect relevant files, and understand what needs to change.
+  2. **Implement**: make the minimal, clean code changes that satisfy the requirements.
+  3. **Verify**: run `dart format .` and `dart analyze`, then fix **all** reported issues before considering the task done.
+
+- **Formatting & analysis**
+  - Always run `dart format .` from the repo root before committing.
+  - Keep `dart analyze` at **0 issues**; treat infos (lints) as must-fix, not optional.
+
+- **Layering & package boundaries**
+  - Use this dependency direction and keep code aligned with it:
+    - `models` → plain data models (Freezed + JSON).
+    - `datasource` → Supabase and other external data access, depends on `models`.
+    - `domain` → repositories, depends on `datasource` and `models`.
+    - `api` → Dart Frog routes and DI wiring, depends on `domain` (and `datasource` only via DI modules).
+  - Keep repository interfaces in `domain/src/<context>/*_repository.dart` and their implementations in separate `*_repository_impl.dart` files.
+  - Keep datasources in `datasource/src/<context>/*_datasource.dart` + `*_datasrouce_impl.dart` backed by Supabase.
+
+- **Models package structure**
+  - Put each model in a context directory under `packages/models/lib/src` (e.g. `category/category_model.dart`, `product/product_model.dart`, `unit/unit_model.dart`).
+  - Export models only via `models.dart` (the barrel) and update imports to use `package:models/...` rather than relative paths.
+  - After changing models or `build.yaml` in `packages/models`, run `dart run build_runner build -d` in `packages/models`.
+
+- **Code generation & DI**
+  - When changing DI setup or adding new injectables in `api` or `api/pacakges/*`, rerun `dart run build_runner build --delete-conflicting-outputs` in the affected package.
+  - Use `@Injectable(as: Interface)` / `@injectable` with **named parameters** for dependencies, and wire external packages via micro packages (`DatasourcePackageModule`, `DomainPackageModule`).
+
+- **API routes & JSON**
+  - In Dart Frog routes, depend on repositories from the `domain` package (not datasources) via per-route middleware + `context.read<...>()`.
+  - Always return JSON-serializable values from routes by calling `toJson()` on models (or mapping lists to `e.toJson()`).
+
+- **Pubspec & versions**
+  - Keep `dependencies` and `dev_dependencies` blocks alphabetically sorted within each `pubspec.yaml`.
+  - Keep shared tooling versions (e.g. `build_runner`, `injectable_generator`, `json_serializable`, `very_good_analysis`) consistent across packages unless there is a deliberate reason to diverge.
+

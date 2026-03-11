@@ -14,4 +14,23 @@ final class UnitRepositoryImpl implements UnitRepository {
 
   @override
   Future<List<UnitModel>> getUnits() => _unitDatasource.getUnits();
+
+  @override
+  Future<UnitModel?> getUnit({required int id}) =>
+      _unitDatasource.getUnit(id: id);
+
+  @override
+  Future<UnitModel> createUnit({
+    required Map<String, dynamic> data,
+  }) => _unitDatasource.createUnit(data: data);
+
+  @override
+  Future<UnitModel> updateUnit({
+    required int id,
+    required Map<String, dynamic> data,
+  }) => _unitDatasource.updateUnit(id: id, data: data);
+
+  @override
+  Future<void> deleteUnit({required int id}) =>
+      _unitDatasource.deleteUnit(id: id);
 }
