@@ -9,8 +9,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  datasource:
-    path: ../datasource
+  datasource: ^0.1.0
   injectable: ^2.7.1
   models:
     path: ../../../packages/models
