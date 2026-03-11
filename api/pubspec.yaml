@@ -12,10 +12,8 @@ workspace:
 
 dependencies:
   dart_frog: ^1.1.0
-  datasource:
-    path: pacakges/datasource
-  domain:
-    path: pacakges/domain
+  datasource: ^0.1.0
+  domain: ^0.1.0
   get_it: ^9.2.1
   injectable: ^2.7.1
   json_annotation: ^4.11.0
