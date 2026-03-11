@@ -6,8 +6,8 @@ Handler middleware(Handler handler) {
   return handler
       .use(requestLogger())
       .use(
-        provider<ProductRepository>(
-          (context) => sl<ProductRepository>(),
+        provider<CategoryRepository>(
+          (context) => sl<CategoryRepository>(),
         ),
       );
 }

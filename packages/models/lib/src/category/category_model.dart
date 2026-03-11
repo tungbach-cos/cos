@@ -8,8 +8,8 @@ part 'category_model.g.dart';
 abstract class CategoryModel with _$CategoryModel {
   /// Creates a [CategoryModel] from JSON.
   const factory CategoryModel({
-    required int id,
-    required String name,
+    int? id,
+    String? name,
   }) = _CategoryModel;
 
   /// Parses [CategoryModel] from a JSON map.

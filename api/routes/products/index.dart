@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
 
-import 'package:datasource/datasource.dart';
+import 'package:domain/domain.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   return switch (context.request.method) {
@@ -15,8 +15,8 @@ Future<Response> onRequest(RequestContext context) async {
 }
 
 Future<Response> _getProducts(RequestContext context) async {
-  final productDatasource = context.read<ProductDatasource>();
-  final products = await productDatasource.getProducts();
+  final productRepository = context.read<ProductRepository>();
+  final products = await productRepository.getProducts();
   return Response.json(
     body: products.map((e) => e.toJson()).toList(),
   );
@@ -30,9 +30,9 @@ Future<Response> _postProduct(RequestContext context) async {
       body: 'Request body must be a JSON object',
     );
   }
-  final productDatasource = context.read<ProductDatasource>();
+  final productRepository = context.read<ProductRepository>();
   try {
-    final product = await productDatasource.createProduct(data: body);
+    final product = await productRepository.createProduct(data: body);
     return Response.json(
       body: product.toJson(),
       statusCode: HttpStatus.created,

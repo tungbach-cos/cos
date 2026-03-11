@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      injectable_generator:injectable:
+        enabled: true
+        generate_for:
+          - lib/src/core/di/injection.dart
+

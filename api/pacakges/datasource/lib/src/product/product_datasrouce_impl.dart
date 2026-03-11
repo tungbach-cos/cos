@@ -3,8 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:models/models.dart';
 import 'package:supabase/supabase.dart';
 
+/// Supabase-backed implementation of [ProductDatasource].
 @Injectable(as: ProductDatasource)
 final class ProductDatasourceImpl implements ProductDatasource {
+  /// Creates a [ProductDatasourceImpl] with the given [supabase] client.
   ProductDatasourceImpl({
     required SupabaseClient supabase,
   }) : _supabase = supabase;

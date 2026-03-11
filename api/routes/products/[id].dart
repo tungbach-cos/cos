@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
 
-import 'package:datasource/datasource.dart';
+import 'package:domain/domain.dart';
 
 Future<Response> onRequest(
   RequestContext context,
@@ -26,8 +26,8 @@ Future<Response> onRequest(
 }
 
 Future<Response> _getProduct(RequestContext context, int id) async {
-  final productDatasource = context.read<ProductDatasource>();
-  final product = await productDatasource.getProduct(id: id);
+  final productRepository = context.read<ProductRepository>();
+  final product = await productRepository.getProduct(id: id);
   if (product == null) {
     return Response(statusCode: HttpStatus.notFound);
   }
@@ -42,9 +42,9 @@ Future<Response> _patchProduct(RequestContext context, int id) async {
       body: 'Request body must be a JSON object',
     );
   }
-  final productDatasource = context.read<ProductDatasource>();
+  final productRepository = context.read<ProductRepository>();
   try {
-    final product = await productDatasource.updateProduct(id: id, data: body);
+    final product = await productRepository.updateProduct(id: id, data: body);
     return Response.json(body: product.toJson());
   } catch (e) {
     return Response(
@@ -55,11 +55,11 @@ Future<Response> _patchProduct(RequestContext context, int id) async {
 }
 
 Future<Response> _deleteProduct(RequestContext context, int id) async {
-  final productDatasource = context.read<ProductDatasource>();
-  final product = await productDatasource.getProduct(id: id);
+  final productRepository = context.read<ProductRepository>();
+  final product = await productRepository.getProduct(id: id);
   if (product == null) {
     return Response(statusCode: HttpStatus.notFound);
   }
-  await productDatasource.deleteProduct(id: id);
+  await productRepository.deleteProduct(id: id);
   return Response(statusCode: HttpStatus.noContent);
 }

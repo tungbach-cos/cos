@@ -6,8 +6,10 @@ part of 'unit_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UnitModel _$UnitModelFromJson(Map<String, dynamic> json) =>
-    _UnitModel(id: (json['id'] as num).toInt(), name: json['name'] as String);
+_UnitModel _$UnitModelFromJson(Map<String, dynamic> json) => _UnitModel(
+  id: (json['id'] as num?)?.toInt(),
+  name: json['name'] as String?,
+);
 
 Map<String, dynamic> _$UnitModelToJson(_UnitModel instance) =>
-    <String, dynamic>{'id': instance.id, 'name': instance.name};
+    <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};

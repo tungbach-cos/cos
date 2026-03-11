@@ -8,8 +8,8 @@ part 'unit_model.g.dart';
 abstract class UnitModel with _$UnitModel {
   /// Creates a [UnitModel] from JSON.
   const factory UnitModel({
-    required int id,
-    required String name,
+    int? id,
+    String? name,
   }) = _UnitModel;
 
   /// Parses [UnitModel] from a JSON map.
