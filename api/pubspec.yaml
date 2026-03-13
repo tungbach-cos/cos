@@ -6,14 +6,12 @@ publish_to: none
 environment:
   sdk: ^3.11.0
 
-workspace:
-  - pacakges/datasource
-  - pacakges/domain
-
 dependencies:
   dart_frog: ^1.1.0
-  datasource: ^0.1.0
-  domain: ^0.1.0
+  datasource:
+    path: packages/datasource
+  domain:
+    path: packages/domain
   get_it: ^9.2.1
   injectable: ^2.7.1
   json_annotation: ^4.11.0

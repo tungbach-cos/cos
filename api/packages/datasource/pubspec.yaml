@@ -1,18 +1,17 @@
-name: domain
-description: Domain services and repositories for the API
+name: datasource
+description: Data source utilities and services for the API
 version: 0.1.0+1
 publish_to: none
 
 environment:
   sdk: ^3.11.0
 
-resolution: workspace
-
 dependencies:
-  datasource: ^0.1.0
+  get_it: ^9.2.1
   injectable: ^2.7.1
   models:
     path: ../../../packages/models
+  supabase: ^2.10.2
 
 dev_dependencies:
   build_runner: ^2.12.2

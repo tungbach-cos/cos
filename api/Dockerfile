@@ -5,12 +5,12 @@ FROM dart:stable AS build
 
 WORKDIR /app
 
-# Resolve app dependencies.
 COPY pubspec.* ./
-RUN dart pub get
-
+COPY pubspec_overrides.yaml ./
 # Copy app source code and AOT compile it.
 COPY . .
+# Resolve app dependencies.
+RUN dart pub get
 
 # Generate a production build.
 RUN dart pub global activate dart_frog_cli

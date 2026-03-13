@@ -18,22 +18,18 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:supabase/supabase.dart' as _i590;
 
 class DatasourcePackageModule extends _i526.MicroPackageModule {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     final thirdPartyRegister = _$ThirdPartyRegister();
     gh.lazySingleton<_i590.SupabaseClient>(
-      () => thirdPartyRegister.supabaseClient,
-    );
-    gh.factory<_i883.CategoryDatasource>(
-      () => _i1028.CategoryDatasourceImpl(supabase: gh<_i590.SupabaseClient>()),
-    );
+        () => thirdPartyRegister.supabaseClient);
+    gh.factory<_i883.CategoryDatasource>(() =>
+        _i1028.CategoryDatasourceImpl(supabase: gh<_i590.SupabaseClient>()));
     gh.factory<_i224.UnitDatasource>(
-      () => _i897.UnitDatasourceImpl(supabase: gh<_i590.SupabaseClient>()),
-    );
-    gh.factory<_i445.ProductDatasource>(
-      () => _i271.ProductDatasourceImpl(supabase: gh<_i590.SupabaseClient>()),
-    );
+        () => _i897.UnitDatasourceImpl(supabase: gh<_i590.SupabaseClient>()));
+    gh.factory<_i445.ProductDatasource>(() =>
+        _i271.ProductDatasourceImpl(supabase: gh<_i590.SupabaseClient>()));
   }
 }
 
