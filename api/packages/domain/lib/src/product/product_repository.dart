@@ -13,7 +13,7 @@ abstract interface class ProductRepository {
   /// Creates a new product from [data], optionally uploading [image] to
   /// storage and setting [data]'s image URL.
   Future<ProductModel> createProduct({
-    required ProductModel data,
+    required ProductRequestModel data,
     FileModel? image,
   });
 

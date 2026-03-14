@@ -30,7 +30,7 @@ final class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<ProductModel> createProduct({
-    required ProductModel data,
+    required ProductRequestModel data,
     FileModel? image,
   }) async {
     var productData = data;
@@ -57,8 +57,8 @@ final class ProductRepositoryImpl implements ProductRepository {
     required int id,
     required Map<String, dynamic> data,
   }) async {
-    final product = await getProduct(id: id);
-    return _productDatasource.updateProduct(id: product.id!, data: data);
+    await getProduct(id: id);
+    return _productDatasource.updateProduct(id: id, data: data);
   }
 
   @override
@@ -67,7 +67,7 @@ final class ProductRepositoryImpl implements ProductRepository {
     if (product case ProductModel(sku: String(isNotEmpty: true))) {
       await _storageDatasource.deleteFile(
         bucket: StorageBucket.product,
-        path: product.sku!,
+        path: product.sku,
       );
     }
     await _productDatasource.deleteProduct(id: id);

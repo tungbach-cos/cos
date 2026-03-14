@@ -8,7 +8,7 @@ targets:
       freezed:
         enabled: true
         generate_for:
-          - lib/src/**/**_model.dart
+          - lib/src/**_model.dart
         options:
           # Generate copyWith method
           copy_with: true
@@ -25,7 +25,7 @@ targets:
       json_serializable:
         enabled: true
         generate_for:
-          - lib/src/**/**_model.dart
+          - lib/src/**_model.dart
         options:
           explicit_to_json: true
           field_rename: snake

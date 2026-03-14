@@ -95,7 +95,7 @@ Future<Response> _postProduct(RequestContext context) async {
     }
   }
 
-  final data = ProductModel(
+  final data = ProductRequestModel(
     name: name,
     categoryId: categoryId,
     unitId: unitId,
@@ -111,10 +111,11 @@ Future<Response> _postProduct(RequestContext context) async {
   if (uploadedFile != null) {
     final bytes = await uploadedFile.readAsBytes();
     final ContentType(:mimeType) = uploadedFile.contentType;
+    final skuValue = data.sku ?? '';
     image = FileModel(
       bytes: bytes,
       contentType: mimeType,
-      name: data.sku!,
+      name: skuValue,
     );
   }
 
