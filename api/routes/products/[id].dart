@@ -27,11 +27,14 @@ Future<Response> onRequest(
 
 Future<Response> _getProduct(RequestContext context, int id) async {
   final productRepository = context.read<ProductRepository>();
-  final product = await productRepository.getProduct(id: id);
-  if (product == null) {
-    return Response(statusCode: HttpStatus.notFound);
+  try {
+    final product = await productRepository.getProduct(id: id);
+    return Response.json(body: product);
+  } on ProductNotFoundException catch (e) {
+    return Response(statusCode: HttpStatus.notFound, body: e.toString());
+  } catch (e) {
+    return Response(statusCode: HttpStatus.internalServerError);
   }
-  return Response.json(body: product);
 }
 
 Future<Response> _patchProduct(RequestContext context, int id) async {
@@ -45,7 +48,7 @@ Future<Response> _patchProduct(RequestContext context, int id) async {
   final productRepository = context.read<ProductRepository>();
   try {
     final product = await productRepository.updateProduct(id: id, data: body);
-    return Response.json(body: product.toJson());
+    return Response.json(body: product);
   } catch (e) {
     return Response(
       statusCode: HttpStatus.badRequest,

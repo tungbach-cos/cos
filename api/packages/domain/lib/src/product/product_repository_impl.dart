@@ -22,8 +22,11 @@ final class ProductRepositoryImpl implements ProductRepository {
   Future<List<ProductModel>> getProducts() => _productDatasource.getProducts();
 
   @override
-  Future<ProductModel?> getProduct({required int id}) =>
-      _productDatasource.getProduct(id: id);
+  Future<ProductModel> getProduct({required int id}) async {
+    final product = await _productDatasource.getProduct(id: id);
+    if (product == null) throw ProductNotFoundException(id: id);
+    return product;
+  }
 
   @override
   Future<ProductModel> createProduct({
@@ -57,8 +60,7 @@ final class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<void> deleteProduct({required int id}) async {
-    final product = await _productDatasource.getProduct(id: id);
-    if (product == null) throw ProductNotFoundException(id: id);
+    final product = await getProduct(id: id);
     if (product case ProductModel(sku: String(isNotEmpty: true))) {
       await _storageDatasource.deleteFile(
         bucket: StorageBucket.product,
