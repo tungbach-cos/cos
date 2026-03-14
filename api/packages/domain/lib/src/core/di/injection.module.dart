@@ -19,10 +19,12 @@ class DomainPackageModule extends _i526.MicroPackageModule {
 // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
-    gh.factory<_i441.ProductRepository>(() => _i860.ProductRepositoryImpl(
-        productDatasource: gh<_i351.ProductDatasource>()));
     gh.factory<_i638.CategoryRepository>(() => _i957.CategoryRepositoryImpl(
         categoryDatasource: gh<_i351.CategoryDatasource>()));
+    gh.factory<_i441.ProductRepository>(() => _i860.ProductRepositoryImpl(
+          productDatasource: gh<_i351.ProductDatasource>(),
+          storageDatasource: gh<_i351.StorageDatasource>(),
+        ));
     gh.factory<_i597.UnitRepository>(() =>
         _i422.UnitRepositoryImpl(unitDatasource: gh<_i351.UnitDatasource>()));
   }

@@ -13,19 +13,22 @@ final class CategoryDatasourceImpl implements CategoryDatasource {
 
   final SupabaseClient _supabase;
 
+  static const _query = 'id, name';
+  final _table = 'category';
+
   @override
   Future<List<CategoryModel>> getCategories() async {
     return _supabase
-        .from('category')
-        .select('id, name')
+        .from(_table)
+        .select(_query)
         .then((value) => value.map(CategoryModel.fromJson).toList());
   }
 
   @override
   Future<CategoryModel?> getCategory({required int id}) async {
     final value = await _supabase
-        .from('category')
-        .select('id, name')
+        .from(_table)
+        .select(_query)
         .eq('id', id)
         .maybeSingle();
     return value == null ? null : CategoryModel.fromJson(value);
@@ -36,9 +39,9 @@ final class CategoryDatasourceImpl implements CategoryDatasource {
     required Map<String, dynamic> data,
   }) async {
     final value = await _supabase
-        .from('category')
+        .from(_table)
         .insert(data)
-        .select('id, name')
+        .select(_query)
         .single();
     return CategoryModel.fromJson(value);
   }
@@ -49,16 +52,16 @@ final class CategoryDatasourceImpl implements CategoryDatasource {
     required Map<String, dynamic> data,
   }) async {
     final value = await _supabase
-        .from('category')
+        .from(_table)
         .update(data)
         .eq('id', id)
-        .select('id, name')
+        .select(_query)
         .single();
     return CategoryModel.fromJson(value);
   }
 
   @override
   Future<void> deleteCategory({required int id}) async {
-    await _supabase.from('category').delete().eq('id', id);
+    await _supabase.from(_table).delete().eq('id', id);
   }
 }

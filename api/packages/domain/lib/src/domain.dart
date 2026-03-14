@@ -1,3 +1,3 @@
-export 'category/category_repository.dart';
-export 'product/product_repository.dart';
-export 'unit/unit_repository.dart';
+export 'category/category.dart';
+export 'product/product.dart';
+export 'unit/unit.dart';

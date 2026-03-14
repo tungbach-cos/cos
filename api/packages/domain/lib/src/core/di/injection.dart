@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
     CategoryDatasource,
     ProductDatasource,
     UnitDatasource,
+    StorageDatasource,
   ],
 )
 void initDomainMicroPackage() {}

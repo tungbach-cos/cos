@@ -56,10 +56,15 @@ Future<Response> _patchProduct(RequestContext context, int id) async {
 
 Future<Response> _deleteProduct(RequestContext context, int id) async {
   final productRepository = context.read<ProductRepository>();
-  final product = await productRepository.getProduct(id: id);
-  if (product == null) {
-    return Response(statusCode: HttpStatus.notFound);
+  try {
+    await productRepository.deleteProduct(id: id);
+    return Response(statusCode: HttpStatus.noContent);
+  } on ProductNotFoundException catch (e) {
+    return Response(
+      statusCode: HttpStatus.notFound,
+      body: e.toString(),
+    );
+  } catch (e) {
+    return Response(statusCode: HttpStatus.internalServerError);
   }
-  await productRepository.deleteProduct(id: id);
-  return Response(statusCode: HttpStatus.noContent);
 }

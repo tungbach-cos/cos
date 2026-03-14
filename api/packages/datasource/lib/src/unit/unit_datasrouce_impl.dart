@@ -13,19 +13,22 @@ final class UnitDatasourceImpl implements UnitDatasource {
 
   final SupabaseClient _supabase;
 
+  static const _query = 'id, name';
+  static const _table = 'unit';
+
   @override
   Future<List<UnitModel>> getUnits() async {
     return _supabase
-        .from('unit')
-        .select('id, name')
+        .from(_table)
+        .select(_query)
         .then((value) => value.map(UnitModel.fromJson).toList());
   }
 
   @override
   Future<UnitModel?> getUnit({required int id}) async {
     final value = await _supabase
-        .from('unit')
-        .select('id, name')
+        .from(_table)
+        .select(_query)
         .eq('id', id)
         .maybeSingle();
     return value == null ? null : UnitModel.fromJson(value);
@@ -36,9 +39,9 @@ final class UnitDatasourceImpl implements UnitDatasource {
     required Map<String, dynamic> data,
   }) async {
     final value = await _supabase
-        .from('unit')
+        .from(_table)
         .insert(data)
-        .select('id, name')
+        .select(_query)
         .single();
     return UnitModel.fromJson(value);
   }
@@ -49,16 +52,16 @@ final class UnitDatasourceImpl implements UnitDatasource {
     required Map<String, dynamic> data,
   }) async {
     final value = await _supabase
-        .from('unit')
+        .from(_table)
         .update(data)
         .eq('id', id)
-        .select('id, name')
+        .select(_query)
         .single();
     return UnitModel.fromJson(value);
   }
 
   @override
   Future<void> deleteUnit({required int id}) async {
-    await _supabase.from('unit').delete().eq('id', id);
+    await _supabase.from(_table).delete().eq('id', id);
   }
 }

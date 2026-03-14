@@ -12,8 +12,8 @@ abstract class ProductModel with _$ProductModel {
   const factory ProductModel({
     int? id,
     String? name,
-    CategoryModel? category,
-    UnitModel? unit,
+    @JsonKey(includeToJson: false) CategoryModel? category,
+    @JsonKey(includeToJson: false) UnitModel? unit,
     String? sku,
     String? fullDescription,
     List<String>? features,
@@ -22,6 +22,8 @@ abstract class ProductModel with _$ProductModel {
     double? price,
     DateTime? createdAt,
     DateTime? updatedAt,
+    @JsonKey(includeToJson: true, includeFromJson: false) int? unitId,
+    @JsonKey(includeToJson: true, includeFromJson: false) int? categoryId,
   }) = _ProductModel;
 
   /// Parses [ProductModel] from a JSON map (e.g. from API or database).

@@ -36,8 +36,6 @@ Map<String, dynamic> _$ProductModelToJson(_ProductModel instance) =>
     <String, dynamic>{
       'id': ?instance.id,
       'name': ?instance.name,
-      'category': ?instance.category?.toJson(),
-      'unit': ?instance.unit?.toJson(),
       'sku': ?instance.sku,
       'full_description': ?instance.fullDescription,
       'features': ?instance.features,
@@ -46,4 +44,6 @@ Map<String, dynamic> _$ProductModelToJson(_ProductModel instance) =>
       'price': ?instance.price,
       'created_at': ?instance.createdAt?.toIso8601String(),
       'updated_at': ?instance.updatedAt?.toIso8601String(),
+      'unit_id': ?instance.unitId,
+      'category_id': ?instance.categoryId,
     };
