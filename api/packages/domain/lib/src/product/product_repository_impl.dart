@@ -56,7 +56,10 @@ final class ProductRepositoryImpl implements ProductRepository {
   Future<ProductModel> updateProduct({
     required int id,
     required Map<String, dynamic> data,
-  }) => _productDatasource.updateProduct(id: id, data: data);
+  }) async {
+    final product = await getProduct(id: id);
+    return _productDatasource.updateProduct(id: product.id!, data: data);
+  }
 
   @override
   Future<void> deleteProduct({required int id}) async {

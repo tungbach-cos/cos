@@ -49,11 +49,10 @@ Future<Response> _patchProduct(RequestContext context, int id) async {
   try {
     final product = await productRepository.updateProduct(id: id, data: body);
     return Response.json(body: product);
+  } on ProductNotFoundException catch (e) {
+    return Response(statusCode: HttpStatus.notFound, body: e.toString());
   } catch (e) {
-    return Response(
-      statusCode: HttpStatus.badRequest,
-      body: e.toString(),
-    );
+    return Response(statusCode: HttpStatus.internalServerError);
   }
 }
 
@@ -63,10 +62,7 @@ Future<Response> _deleteProduct(RequestContext context, int id) async {
     await productRepository.deleteProduct(id: id);
     return Response(statusCode: HttpStatus.noContent);
   } on ProductNotFoundException catch (e) {
-    return Response(
-      statusCode: HttpStatus.notFound,
-      body: e.toString(),
-    );
+    return Response(statusCode: HttpStatus.notFound, body: e.toString());
   } catch (e) {
     return Response(statusCode: HttpStatus.internalServerError);
   }
