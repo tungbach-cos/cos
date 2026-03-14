@@ -1,10 +1,27 @@
 ---
-name: deployment
-description: Deployment guidelines for Flutter web applications
+name: shop-deployment-guidelines
+description: Deployment guidelines for Flutter web applications (shop)
 ---
 
 
 # Deployment Rules
+
+## Quick Start
+
+Run from the **repository root**:
+
+```bash
+# Auto-increment patch version (1.0.0 → 1.0.1)
+./.cursor/commands/scripts/deploy-shop.sh
+
+# Deploy specific version
+./.cursor/commands/scripts/deploy-shop.sh 1.2.3
+
+# Test without pushing
+./.cursor/commands/scripts/deploy-shop.sh --dry-run
+```
+
+**Via Cursor:** `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux) → type **deploy** → Enter (runs deploy-shop command).
 
 ## Overview
 
@@ -21,13 +38,13 @@ Run from the **repository root** (the script deploys the app in `shop/`):
 
 ```bash
 # Deploy current version to production (auto-increment patch)
-./.cursor/commands/scripts/deploy.sh
+./.cursor/commands/scripts/deploy-shop.sh
 
 # Deploy with specific version
-./.cursor/commands/scripts/deploy.sh 1.2.3
+./.cursor/commands/scripts/deploy-shop.sh 1.2.3
 
 # Test deployment (dry-run)
-./.cursor/commands/scripts/deploy.sh --dry-run
+./.cursor/commands/scripts/deploy-shop.sh --dry-run
 ```
 
 ### Deployment Steps
@@ -68,7 +85,7 @@ Run from the **repository root** (the script deploys the app in `shop/`):
 ### Version Management
 - Version stored in `shop/pubspec.yaml`
 - Deploy script auto-increments patch version if not specified
-- Manual version override: `./.cursor/commands/scripts/deploy.sh 2.0.0`
+- Manual version override: `./.cursor/commands/scripts/deploy-shop.sh 2.0.0`
 
 ## Deployment Branch
 
@@ -81,7 +98,7 @@ Run from the **repository root** (the script deploys the app in `shop/`):
 ### Important Notes
 - Deployment branch contains **only** static build files (HTML, CSS, JS, assets)
 - No source code, no `lib/`, no `pubspec.yaml` on deployment branch
-- This is ideal for static hosting (GitHub Pages, Netlify, Vercel, etc.)
+- This is ideal for static hosting (GitHub Pages, Netlify, Vercel, Firebase Hosting, Cloudflare Pages)
 - Build artifacts remain ignored on `main` branch via `.gitignore`
 
 ### .gitignore Configuration
@@ -115,6 +132,7 @@ Before running deploy command from repo root:
 - [ ] No linter errors (from `shop/`): `fvm dart analyze`
 - [ ] All changes committed to `main`
 - [ ] Update version in `shop/pubspec.yaml` (if needed)
+- [ ] Update `CHANGELOG.md` with changes (if applicable)
 - [ ] Test build locally (from `shop/`): `fvm flutter build web --release --wasm`
 - [ ] Test built app: `cd shop/build/web && python3 -m http.server 8000`
 
@@ -180,7 +198,14 @@ cd ..
 # Reset deployment branch
 git branch -D deployment/shop
 git push origin --delete deployment/shop
-./.cursor/commands/scripts/deploy.sh
+./.cursor/commands/scripts/deploy-shop.sh
+```
+
+### Permission denied on script
+From repo root:
+```bash
+chmod +x .cursor/commands/scripts/deploy-shop.sh
+./.cursor/commands/scripts/deploy-shop.sh
 ```
 
 ### Large Build Size
@@ -252,7 +277,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
       - name: Deploy
-        run: ./.cursor/commands/scripts/deploy.sh ${{ github.ref_name }}
+        run: ./.cursor/commands/scripts/deploy-shop.sh ${{ github.ref_name }}
 ```
 
 ## Summary
@@ -262,16 +287,16 @@ jobs:
 1. Develop on main branch
 2. Run tests and linting from shop/
 3. Update version in shop/pubspec.yaml
-4. From repo root: ./.cursor/commands/scripts/deploy.sh
+4. From repo root: ./.cursor/commands/scripts/deploy-shop.sh
 5. Script builds shop/, commits to deployment/shop branch, pushes
 6. Hosting provider rebuilds site
 7. Verify deployment
 ```
 
 **Key Commands:**
-- Deploy: `./.cursor/commands/scripts/deploy.sh`
-- Deploy with version: `./.cursor/commands/scripts/deploy.sh 1.2.3`
-- Test: `./.cursor/commands/scripts/deploy.sh --dry-run`
+- Deploy: `./.cursor/commands/scripts/deploy-shop.sh`
+- Deploy with version: `./.cursor/commands/scripts/deploy-shop.sh 1.2.3`
+- Test: `./.cursor/commands/scripts/deploy-shop.sh --dry-run`
 - Rollback: `git checkout deployment/shop && git reset --hard HEAD~1`
 
-For full deploy command details, see `.cursor/commands/deploy.md`.
+For full deploy command details, see `.cursor/commands/deploy-shop.md`.

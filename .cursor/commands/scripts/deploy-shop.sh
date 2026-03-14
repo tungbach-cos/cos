@@ -126,7 +126,7 @@ DEPLOYMENT BRANCH:
     Commit Format: chore(release): <version>
     
 MORE INFO:
-    See .cursor/skills/deployment/SKILL.md for detailed deployment guide
+    See .cursor/skills/shop-deployment-guidelines/SKILL.md for detailed deployment guide
 
 EOF
 }
@@ -464,4 +464,3 @@ main() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     main "$@"
 fi
-

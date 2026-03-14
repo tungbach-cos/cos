@@ -431,7 +431,7 @@ web/
 #### **Build Scripts**
 ```
 scripts/
-├── deploy.sh              # Deployment script
+├── deploy-shop.sh         # Deployment script
 └── generate_logo.sh       # Logo generation script
 ```
 

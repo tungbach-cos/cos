@@ -8,13 +8,13 @@ Run from the **repository root** (the script deploys the app in `shop/`):
 
 ```bash
 # Auto-increment version (1.0.0 → 1.0.1)
-./.cursor/commands/scripts/deploy.sh
+./.cursor/commands/scripts/deploy-shop.sh
 
 # Deploy specific version
-./.cursor/commands/scripts/deploy.sh 1.2.3
+./.cursor/commands/scripts/deploy-shop.sh 1.2.3
 
 # Test without deploying
-./.cursor/commands/scripts/deploy.sh --dry-run
+./.cursor/commands/scripts/deploy-shop.sh --dry-run
 ```
 
 ## What This Command Does
@@ -72,16 +72,16 @@ The script auto-increments the patch version if not specified.
 
 ```bash
 # Show help
-./.cursor/commands/scripts/deploy.sh --help
+./.cursor/commands/scripts/deploy-shop.sh --help
 
 # Run self-tests
-./.cursor/commands/scripts/deploy.sh --test
+./.cursor/commands/scripts/deploy-shop.sh --test
 
 # Dry run (no changes)
-./.cursor/commands/scripts/deploy.sh --dry-run
+./.cursor/commands/scripts/deploy-shop.sh --dry-run
 
 # Deploy with version
-./.cursor/commands/scripts/deploy.sh 2.0.0
+./.cursor/commands/scripts/deploy-shop.sh 2.0.0
 ```
 
 ## Deployment Workflow
@@ -94,7 +94,7 @@ The script auto-increments the patch version if not specified.
                  ▼
 ┌─────────────────────────────────────────────────────┐
 │ 2. From repo root: ./.cursor/commands/scripts/      │
-│    deploy.sh (builds shop/ → deployment/shop)      │
+│    deploy-shop.sh (builds shop/ → deployment/shop)  │
 └────────────────┬────────────────────────────────────┘
                  │
                  ▼
@@ -152,7 +152,7 @@ URL: `https://<username>.github.io/<repository>/`
 git status
 git add .
 git commit -m "feat: your changes"
-./.cursor/commands/scripts/deploy.sh
+./.cursor/commands/scripts/deploy-shop.sh
 ```
 
 ### "Flutter build failed"
@@ -190,8 +190,8 @@ fvm use stable
 
 **Solution:** (from repo root)
 ```bash
-chmod +x .cursor/commands/scripts/deploy.sh
-./.cursor/commands/scripts/deploy.sh
+chmod +x .cursor/commands/scripts/deploy-shop.sh
+./.cursor/commands/scripts/deploy-shop.sh
 ```
 
 ## Rollback Procedure
@@ -294,14 +294,14 @@ jobs:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
       - name: Deploy
-        run: ./.cursor/commands/scripts/deploy.sh ${{ github.ref_name }}
+        run: ./.cursor/commands/scripts/deploy-shop.sh ${{ github.ref_name }}
 ```
 
 ## Additional Resources
 
 - **Deployment Rules**: `.cursor/rules/deployment.mdc`
-- **Full Deployment Guide**: `README_DEPLOYMENT.md`
-- **Deployment Script**: `.cursor/commands/scripts/deploy.sh`
+- **Deployment guidelines (skill)**: `.cursor/skills/shop-deployment-guidelines/SKILL.md`
+- **Deployment Script**: `.cursor/commands/scripts/deploy-shop.sh`
 - **Semantic Versioning**: https://semver.org/
 
 ## Examples
@@ -310,7 +310,7 @@ jobs:
 
 ```bash
 # From repo root: auto-increment and deploy (shop app)
-./.cursor/commands/scripts/deploy.sh
+./.cursor/commands/scripts/deploy-shop.sh
 
 # Output:
 # 🚀 Starting deployment process...
@@ -326,16 +326,16 @@ jobs:
 
 ```bash
 # From repo root
-./.cursor/commands/scripts/deploy.sh 2.0.0
-./.cursor/commands/scripts/deploy.sh 1.1.0
-./.cursor/commands/scripts/deploy.sh 1.0.1
+./.cursor/commands/scripts/deploy-shop.sh 2.0.0
+./.cursor/commands/scripts/deploy-shop.sh 1.1.0
+./.cursor/commands/scripts/deploy-shop.sh 1.0.1
 ```
 
 ### Testing Before Deploy
 
 ```bash
 # Dry run to see what would happen (from repo root)
-./.cursor/commands/scripts/deploy.sh --dry-run
+./.cursor/commands/scripts/deploy-shop.sh --dry-run
 
 # Output shows all steps without making changes
 # [DRY RUN] Would run: fvm flutter build web --release
@@ -355,4 +355,3 @@ The deploy command provides a streamlined, automated way to deploy your Flutter 
 - 📊 Works with all major hosting providers
 
 For detailed documentation, see `.cursor/rules/deployment.mdc`
-
