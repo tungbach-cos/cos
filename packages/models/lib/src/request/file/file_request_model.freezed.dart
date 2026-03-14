@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'file_model.dart';
+part of 'file_request_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,22 +13,22 @@ part of 'file_model.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$FileModel {
+mixin _$FileRequestModel {
 
  List<int> get bytes; String get contentType; String get name;
-/// Create a copy of FileModel
+/// Create a copy of FileRequestModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$FileModelCopyWith<FileModel> get copyWith => _$FileModelCopyWithImpl<FileModel>(this as FileModel, _$identity);
+$FileRequestModelCopyWith<FileRequestModel> get copyWith => _$FileRequestModelCopyWithImpl<FileRequestModel>(this as FileRequestModel, _$identity);
 
-  /// Serializes this FileModel to a JSON map.
+  /// Serializes this FileRequestModel to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FileModel&&const DeepCollectionEquality().equals(other.bytes, bytes)&&(identical(other.contentType, contentType) || other.contentType == contentType)&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FileRequestModel&&const DeepCollectionEquality().equals(other.bytes, bytes)&&(identical(other.contentType, contentType) || other.contentType == contentType)&&(identical(other.name, name) || other.name == name));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37,15 +37,15 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'FileModel(bytes: $bytes, contentType: $contentType, name: $name)';
+  return 'FileRequestModel(bytes: $bytes, contentType: $contentType, name: $name)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $FileModelCopyWith<$Res>  {
-  factory $FileModelCopyWith(FileModel value, $Res Function(FileModel) _then) = _$FileModelCopyWithImpl;
+abstract mixin class $FileRequestModelCopyWith<$Res>  {
+  factory $FileRequestModelCopyWith(FileRequestModel value, $Res Function(FileRequestModel) _then) = _$FileRequestModelCopyWithImpl;
 @useResult
 $Res call({
  List<int> bytes, String contentType, String name
@@ -56,14 +56,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$FileModelCopyWithImpl<$Res>
-    implements $FileModelCopyWith<$Res> {
-  _$FileModelCopyWithImpl(this._self, this._then);
+class _$FileRequestModelCopyWithImpl<$Res>
+    implements $FileRequestModelCopyWith<$Res> {
+  _$FileRequestModelCopyWithImpl(this._self, this._then);
 
-  final FileModel _self;
-  final $Res Function(FileModel) _then;
+  final FileRequestModel _self;
+  final $Res Function(FileRequestModel) _then;
 
-/// Create a copy of FileModel
+/// Create a copy of FileRequestModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? bytes = null,Object? contentType = null,Object? name = null,}) {
   return _then(_self.copyWith(
@@ -77,8 +77,8 @@ as String,
 }
 
 
-/// Adds pattern-matching-related methods to [FileModel].
-extension FileModelPatterns on FileModel {
+/// Adds pattern-matching-related methods to [FileRequestModel].
+extension FileRequestModelPatterns on FileRequestModel {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -91,10 +91,10 @@ extension FileModelPatterns on FileModel {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _FileModel value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _FileRequestModel value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _FileModel() when $default != null:
+case _FileRequestModel() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -113,10 +113,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _FileModel value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _FileRequestModel value)  $default,){
 final _that = this;
 switch (_that) {
-case _FileModel():
+case _FileRequestModel():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -134,10 +134,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _FileModel value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _FileRequestModel value)?  $default,){
 final _that = this;
 switch (_that) {
-case _FileModel() when $default != null:
+case _FileRequestModel() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -157,7 +157,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<int> bytes,  String contentType,  String name)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _FileModel() when $default != null:
+case _FileRequestModel() when $default != null:
 return $default(_that.bytes,_that.contentType,_that.name);case _:
   return orElse();
 
@@ -178,7 +178,7 @@ return $default(_that.bytes,_that.contentType,_that.name);case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<int> bytes,  String contentType,  String name)  $default,) {final _that = this;
 switch (_that) {
-case _FileModel():
+case _FileRequestModel():
 return $default(_that.bytes,_that.contentType,_that.name);case _:
   throw StateError('Unexpected subclass');
 
@@ -198,7 +198,7 @@ return $default(_that.bytes,_that.contentType,_that.name);case _:
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<int> bytes,  String contentType,  String name)?  $default,) {final _that = this;
 switch (_that) {
-case _FileModel() when $default != null:
+case _FileRequestModel() when $default != null:
 return $default(_that.bytes,_that.contentType,_that.name);case _:
   return null;
 
@@ -210,9 +210,9 @@ return $default(_that.bytes,_that.contentType,_that.name);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FileModel implements FileModel {
-  const _FileModel({required final  List<int> bytes, required this.contentType, required this.name}): _bytes = bytes;
-  factory _FileModel.fromJson(Map<String, dynamic> json) => _$FileModelFromJson(json);
+class _FileRequestModel implements FileRequestModel {
+  const _FileRequestModel({required final  List<int> bytes, required this.contentType, required this.name}): _bytes = bytes;
+  factory _FileRequestModel.fromJson(Map<String, dynamic> json) => _$FileRequestModelFromJson(json);
 
  final  List<int> _bytes;
 @override List<int> get bytes {
@@ -224,20 +224,20 @@ class _FileModel implements FileModel {
 @override final  String contentType;
 @override final  String name;
 
-/// Create a copy of FileModel
+/// Create a copy of FileRequestModel
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$FileModelCopyWith<_FileModel> get copyWith => __$FileModelCopyWithImpl<_FileModel>(this, _$identity);
+_$FileRequestModelCopyWith<_FileRequestModel> get copyWith => __$FileRequestModelCopyWithImpl<_FileRequestModel>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$FileModelToJson(this, );
+  return _$FileRequestModelToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FileModel&&const DeepCollectionEquality().equals(other._bytes, _bytes)&&(identical(other.contentType, contentType) || other.contentType == contentType)&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FileRequestModel&&const DeepCollectionEquality().equals(other._bytes, _bytes)&&(identical(other.contentType, contentType) || other.contentType == contentType)&&(identical(other.name, name) || other.name == name));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -246,15 +246,15 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'FileModel(bytes: $bytes, contentType: $contentType, name: $name)';
+  return 'FileRequestModel(bytes: $bytes, contentType: $contentType, name: $name)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$FileModelCopyWith<$Res> implements $FileModelCopyWith<$Res> {
-  factory _$FileModelCopyWith(_FileModel value, $Res Function(_FileModel) _then) = __$FileModelCopyWithImpl;
+abstract mixin class _$FileRequestModelCopyWith<$Res> implements $FileRequestModelCopyWith<$Res> {
+  factory _$FileRequestModelCopyWith(_FileRequestModel value, $Res Function(_FileRequestModel) _then) = __$FileRequestModelCopyWithImpl;
 @override @useResult
 $Res call({
  List<int> bytes, String contentType, String name
@@ -265,17 +265,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$FileModelCopyWithImpl<$Res>
-    implements _$FileModelCopyWith<$Res> {
-  __$FileModelCopyWithImpl(this._self, this._then);
+class __$FileRequestModelCopyWithImpl<$Res>
+    implements _$FileRequestModelCopyWith<$Res> {
+  __$FileRequestModelCopyWithImpl(this._self, this._then);
 
-  final _FileModel _self;
-  final $Res Function(_FileModel) _then;
+  final _FileRequestModel _self;
+  final $Res Function(_FileRequestModel) _then;
 
-/// Create a copy of FileModel
+/// Create a copy of FileRequestModel
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? bytes = null,Object? contentType = null,Object? name = null,}) {
-  return _then(_FileModel(
+  return _then(_FileRequestModel(
 bytes: null == bytes ? _self._bytes : bytes // ignore: cast_nullable_to_non_nullable
 as List<int>,contentType: null == contentType ? _self.contentType : contentType // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable

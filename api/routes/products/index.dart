@@ -106,13 +106,13 @@ Future<Response> _postProduct(RequestContext context) async {
     price: price,
   );
 
-  FileModel? image;
+  FileRequestModel? image;
   final uploadedFile = formData.files['image'];
   if (uploadedFile != null) {
     final bytes = await uploadedFile.readAsBytes();
     final ContentType(:mimeType) = uploadedFile.contentType;
     final skuValue = data.sku ?? '';
-    image = FileModel(
+    image = FileRequestModel(
       bytes: bytes,
       contentType: mimeType,
       name: skuValue,
@@ -126,9 +126,11 @@ Future<Response> _postProduct(RequestContext context) async {
       image: image,
     );
     return Response.json(
-      body: product.toJson(),
+      body: product,
       statusCode: HttpStatus.created,
     );
+  } on ProductNotFoundException {
+    return Response(statusCode: HttpStatus.notFound);
   } catch (e) {
     return Response(
       statusCode: HttpStatus.badRequest,

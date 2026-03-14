@@ -31,20 +31,18 @@ final class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<ProductModel> createProduct({
     required ProductRequestModel data,
-    FileModel? image,
+    FileRequestModel? image,
   }) async {
     var productData = data;
-    if (image case FileModel(
+    if (image case FileRequestModel(
       :final name,
-      bytes: List(
-        isNotEmpty: true,
-      ),
+      :final bytes,
       :final contentType,
-    )) {
+    ) when name.isNotEmpty && bytes.isNotEmpty) {
       final imageUrl = await _storageDatasource.uploadFile(
         bucket: StorageBucket.product,
         path: name,
-        bytes: image.bytes,
+        bytes: bytes,
         contentType: contentType,
       );
       productData = productData.copyWith(imageUrl: imageUrl);
@@ -55,10 +53,51 @@ final class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<ProductModel> updateProduct({
     required int id,
-    required Map<String, dynamic> data,
+    required ProductRequestModel data,
+    FileRequestModel? image,
   }) async {
-    await getProduct(id: id);
-    return _productDatasource.updateProduct(id: id, data: data);
+    final ProductModel(
+      id: productId,
+      :name,
+      category: CategoryModel(id: categoryId),
+      unit: UnitModel(id: unitId),
+      :sku,
+      :fullDescription,
+      :features,
+      :specifications,
+      :price,
+      :imageUrl,
+    ) = await getProduct(
+      id: id,
+    );
+    var updateData = data.copyWith(
+      name: data.name ?? name,
+      categoryId: data.categoryId ?? categoryId,
+      unitId: data.unitId ?? unitId,
+      sku: data.sku ?? sku,
+      fullDescription: data.fullDescription ?? fullDescription,
+      features: data.features ?? features,
+      specifications: data.specifications ?? specifications,
+      price: data.price ?? price,
+      imageUrl: imageUrl,
+    );
+    if (image case FileRequestModel(
+      :final bytes,
+      :final contentType,
+    ) when bytes.isNotEmpty) {
+      final path = sku;
+      final imageUrl = await _storageDatasource.uploadFile(
+        bucket: StorageBucket.product,
+        path: path,
+        bytes: image.bytes,
+        contentType: contentType,
+      );
+      updateData = updateData.copyWith(imageUrl: imageUrl);
+    }
+    return _productDatasource.updateProduct(
+      id: id,
+      data: updateData.toJson(),
+    );
   }
 
   @override

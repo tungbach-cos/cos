@@ -14,13 +14,15 @@ abstract interface class ProductRepository {
   /// storage and setting [data]'s image URL.
   Future<ProductModel> createProduct({
     required ProductRequestModel data,
-    FileModel? image,
+    FileRequestModel? image,
   });
 
-  /// Updates an existing product with [id] using [data].
+  /// Updates an existing product with [id] using [data], optionally
+  /// uploading [image] to storage and setting the product's image URL.
   Future<ProductModel> updateProduct({
     required int id,
-    required Map<String, dynamic> data,
+    required ProductRequestModel data,
+    FileRequestModel? image,
   });
 
   /// Deletes a product by [id].
