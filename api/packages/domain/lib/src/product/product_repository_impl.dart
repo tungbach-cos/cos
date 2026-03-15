@@ -80,6 +80,7 @@ final class ProductRepositoryImpl implements ProductRepository {
       specifications: data.specifications ?? specifications,
       price: data.price ?? price,
       imageUrl: imageUrl,
+      updatedAt: DateTime.now().toUtc(),
     );
     if (image case FileRequestModel(
       :final bytes,

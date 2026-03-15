@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductRequestModel {
 
- int? get id; String? get name; int? get categoryId; int? get unitId; String? get sku; String? get fullDescription; List<String>? get features; Map<String, dynamic>? get specifications; String? get imageUrl; double? get price; DateTime? get createdAt; DateTime? get updatedAt;
+@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? get id; String? get name;@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? get categoryId;@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? get unitId; String? get sku; String? get fullDescription;@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? get features;@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? get specifications; String? get imageUrl;@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? get price; DateTime? get createdAt; DateTime? get updatedAt;
 /// Create a copy of ProductRequestModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ProductRequestModelCopyWith<$Res>  {
   factory $ProductRequestModelCopyWith(ProductRequestModel value, $Res Function(ProductRequestModel) _then) = _$ProductRequestModelCopyWithImpl;
 @useResult
 $Res call({
- int? id, String? name, int? categoryId, int? unitId, String? sku, String? fullDescription, List<String>? features, Map<String, dynamic>? specifications, String? imageUrl, double? price, DateTime? createdAt, DateTime? updatedAt
+@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? id, String? name,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? categoryId,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? unitId, String? sku, String? fullDescription,@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? features,@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? specifications, String? imageUrl,@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? price, DateTime? createdAt, DateTime? updatedAt
 });
 
 
@@ -164,7 +164,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? name,  int? categoryId,  int? unitId,  String? sku,  String? fullDescription,  List<String>? features,  Map<String, dynamic>? specifications,  String? imageUrl,  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? id,  String? name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? unitId,  String? sku,  String? fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson)  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson)  Map<String, dynamic>? specifications,  String? imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson)  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProductRequestModel() when $default != null:
 return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.createdAt,_that.updatedAt);case _:
@@ -185,7 +185,7 @@ return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? name,  int? categoryId,  int? unitId,  String? sku,  String? fullDescription,  List<String>? features,  Map<String, dynamic>? specifications,  String? imageUrl,  double? price,  DateTime? createdAt,  DateTime? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? id,  String? name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? unitId,  String? sku,  String? fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson)  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson)  Map<String, dynamic>? specifications,  String? imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson)  double? price,  DateTime? createdAt,  DateTime? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _ProductRequestModel():
 return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.createdAt,_that.updatedAt);case _:
@@ -205,7 +205,7 @@ return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? name,  int? categoryId,  int? unitId,  String? sku,  String? fullDescription,  List<String>? features,  Map<String, dynamic>? specifications,  String? imageUrl,  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? id,  String? name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? unitId,  String? sku,  String? fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson)  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson)  Map<String, dynamic>? specifications,  String? imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson)  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _ProductRequestModel() when $default != null:
 return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.createdAt,_that.updatedAt);case _:
@@ -220,17 +220,17 @@ return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_tha
 @JsonSerializable()
 
 class _ProductRequestModel implements ProductRequestModel {
-  const _ProductRequestModel({this.id, this.name, this.categoryId, this.unitId, this.sku, this.fullDescription, final  List<String>? features, final  Map<String, dynamic>? specifications, this.imageUrl, this.price, this.createdAt, this.updatedAt}): _features = features,_specifications = specifications;
+  const _ProductRequestModel({@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) this.id, this.name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) this.categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) this.unitId, this.sku, this.fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) final  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) final  Map<String, dynamic>? specifications, this.imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) this.price, this.createdAt, this.updatedAt}): _features = features,_specifications = specifications;
   factory _ProductRequestModel.fromJson(Map<String, dynamic> json) => _$ProductRequestModelFromJson(json);
 
-@override final  int? id;
+@override@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) final  int? id;
 @override final  String? name;
-@override final  int? categoryId;
-@override final  int? unitId;
+@override@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) final  int? categoryId;
+@override@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) final  int? unitId;
 @override final  String? sku;
 @override final  String? fullDescription;
  final  List<String>? _features;
-@override List<String>? get features {
+@override@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? get features {
   final value = _features;
   if (value == null) return null;
   if (_features is EqualUnmodifiableListView) return _features;
@@ -239,7 +239,7 @@ class _ProductRequestModel implements ProductRequestModel {
 }
 
  final  Map<String, dynamic>? _specifications;
-@override Map<String, dynamic>? get specifications {
+@override@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? get specifications {
   final value = _specifications;
   if (value == null) return null;
   if (_specifications is EqualUnmodifiableMapView) return _specifications;
@@ -248,7 +248,7 @@ class _ProductRequestModel implements ProductRequestModel {
 }
 
 @override final  String? imageUrl;
-@override final  double? price;
+@override@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) final  double? price;
 @override final  DateTime? createdAt;
 @override final  DateTime? updatedAt;
 
@@ -285,7 +285,7 @@ abstract mixin class _$ProductRequestModelCopyWith<$Res> implements $ProductRequ
   factory _$ProductRequestModelCopyWith(_ProductRequestModel value, $Res Function(_ProductRequestModel) _then) = __$ProductRequestModelCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, String? name, int? categoryId, int? unitId, String? sku, String? fullDescription, List<String>? features, Map<String, dynamic>? specifications, String? imageUrl, double? price, DateTime? createdAt, DateTime? updatedAt
+@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? id, String? name,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? categoryId,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? unitId, String? sku, String? fullDescription,@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? features,@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? specifications, String? imageUrl,@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? price, DateTime? createdAt, DateTime? updatedAt
 });
 
 

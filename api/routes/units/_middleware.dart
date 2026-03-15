@@ -1,6 +1,6 @@
 import 'package:dart_frog/dart_frog.dart';
 import 'package:domain/domain.dart';
-import 'package:tungbach/core/di/di.dart' show sl;
+import 'package:tungbach/core/core.dart' show sl;
 
 Handler middleware(Handler handler) {
   return handler

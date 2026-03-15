@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
-import 'package:tungbach/core/di/di.dart' show configureDependencies;
+import 'package:tungbach/core/core.dart' show configureDependencies;
 
 Future<void> init(InternetAddress address, int port) async {
   configureDependencies();

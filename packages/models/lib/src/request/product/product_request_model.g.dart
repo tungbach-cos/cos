@@ -8,18 +8,20 @@ part of 'product_request_model.dart';
 
 _ProductRequestModel _$ProductRequestModelFromJson(Map<String, dynamic> json) =>
     _ProductRequestModel(
-      id: (json['id'] as num?)?.toInt(),
+      id: ParsingHelper.nullableIntFromJson(json['id']),
       name: json['name'] as String?,
-      categoryId: (json['category_id'] as num?)?.toInt(),
-      unitId: (json['unit_id'] as num?)?.toInt(),
+      categoryId: ParsingHelper.nullableIntFromJson(json['category_id']),
+      unitId: ParsingHelper.nullableIntFromJson(json['unit_id']),
       sku: json['sku'] as String?,
       fullDescription: json['full_description'] as String?,
-      features: (json['features'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      specifications: json['specifications'] as Map<String, dynamic>?,
+      features: ProductRequestModel._nullableStringListFromJson(
+        json['features'],
+      ),
+      specifications: ProductRequestModel._nullableStringMapFromJson(
+        json['specifications'],
+      ),
       imageUrl: json['image_url'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      price: ParsingHelper.nullableDoubleFromJson(json['price']),
       createdAt: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
