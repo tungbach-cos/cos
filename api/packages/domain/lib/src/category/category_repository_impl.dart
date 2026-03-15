@@ -35,7 +35,13 @@ final class CategoryRepositoryImpl implements CategoryRepository {
   Future<CategoryModel> updateCategory({
     required int id,
     required CategoryRequestModel data,
-  }) => _categoryDatasource.updateCategory(id: id, data: data.toJson());
+  }) {
+    final updateData = data.copyWith(updatedAt: DateTime.now().toUtc());
+    return _categoryDatasource.updateCategory(
+      id: id,
+      data: updateData.toJson(),
+    );
+  }
 
   @override
   Future<void> deleteCategory({required int id}) =>

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductRequestModel {
 
-@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? get id; String? get name;@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? get categoryId;@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? get unitId; String? get sku; String? get fullDescription;@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? get features;@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? get specifications; String? get imageUrl;@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? get price; DateTime? get createdAt; DateTime? get updatedAt;
+ String? get name;@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? get categoryId;@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? get unitId; String? get sku; String? get fullDescription;@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? get features;@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? get specifications; String? get imageUrl;@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? get price; DateTime? get updatedAt;
 /// Create a copy of ProductRequestModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ProductRequestModelCopyWith<ProductRequestModel> get copyWith => _$ProductReque
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductRequestModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&(identical(other.sku, sku) || other.sku == sku)&&(identical(other.fullDescription, fullDescription) || other.fullDescription == fullDescription)&&const DeepCollectionEquality().equals(other.features, features)&&const DeepCollectionEquality().equals(other.specifications, specifications)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.price, price) || other.price == price)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductRequestModel&&(identical(other.name, name) || other.name == name)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&(identical(other.sku, sku) || other.sku == sku)&&(identical(other.fullDescription, fullDescription) || other.fullDescription == fullDescription)&&const DeepCollectionEquality().equals(other.features, features)&&const DeepCollectionEquality().equals(other.specifications, specifications)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.price, price) || other.price == price)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,categoryId,unitId,sku,fullDescription,const DeepCollectionEquality().hash(features),const DeepCollectionEquality().hash(specifications),imageUrl,price,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,name,categoryId,unitId,sku,fullDescription,const DeepCollectionEquality().hash(features),const DeepCollectionEquality().hash(specifications),imageUrl,price,updatedAt);
 
 @override
 String toString() {
-  return 'ProductRequestModel(id: $id, name: $name, categoryId: $categoryId, unitId: $unitId, sku: $sku, fullDescription: $fullDescription, features: $features, specifications: $specifications, imageUrl: $imageUrl, price: $price, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'ProductRequestModel(name: $name, categoryId: $categoryId, unitId: $unitId, sku: $sku, fullDescription: $fullDescription, features: $features, specifications: $specifications, imageUrl: $imageUrl, price: $price, updatedAt: $updatedAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ProductRequestModelCopyWith<$Res>  {
   factory $ProductRequestModelCopyWith(ProductRequestModel value, $Res Function(ProductRequestModel) _then) = _$ProductRequestModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? id, String? name,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? categoryId,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? unitId, String? sku, String? fullDescription,@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? features,@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? specifications, String? imageUrl,@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? price, DateTime? createdAt, DateTime? updatedAt
+ String? name,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? categoryId,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? unitId, String? sku, String? fullDescription,@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? features,@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? specifications, String? imageUrl,@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? price, DateTime? updatedAt
 });
 
 
@@ -65,10 +65,9 @@ class _$ProductRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of ProductRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? categoryId = freezed,Object? unitId = freezed,Object? sku = freezed,Object? fullDescription = freezed,Object? features = freezed,Object? specifications = freezed,Object? imageUrl = freezed,Object? price = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? categoryId = freezed,Object? unitId = freezed,Object? sku = freezed,Object? fullDescription = freezed,Object? features = freezed,Object? specifications = freezed,Object? imageUrl = freezed,Object? price = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,categoryId: freezed == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
 as int?,unitId: freezed == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
 as int?,sku: freezed == sku ? _self.sku : sku // ignore: cast_nullable_to_non_nullable
@@ -77,8 +76,7 @@ as String?,features: freezed == features ? _self.features : features // ignore: 
 as List<String>?,specifications: freezed == specifications ? _self.specifications : specifications // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as double?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));
 }
@@ -164,10 +162,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? id,  String? name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? unitId,  String? sku,  String? fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson)  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson)  Map<String, dynamic>? specifications,  String? imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson)  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? unitId,  String? sku,  String? fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson)  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson)  Map<String, dynamic>? specifications,  String? imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson)  double? price,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProductRequestModel() when $default != null:
-return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.name,_that.categoryId,_that.unitId,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -185,10 +183,10 @@ return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? id,  String? name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? unitId,  String? sku,  String? fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson)  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson)  Map<String, dynamic>? specifications,  String? imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson)  double? price,  DateTime? createdAt,  DateTime? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? unitId,  String? sku,  String? fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson)  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson)  Map<String, dynamic>? specifications,  String? imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson)  double? price,  DateTime? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _ProductRequestModel():
-return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.name,_that.categoryId,_that.unitId,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.updatedAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -205,10 +203,10 @@ return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? id,  String? name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? unitId,  String? sku,  String? fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson)  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson)  Map<String, dynamic>? specifications,  String? imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson)  double? price,  DateTime? createdAt,  DateTime? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? unitId,  String? sku,  String? fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson)  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson)  Map<String, dynamic>? specifications,  String? imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson)  double? price,  DateTime? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _ProductRequestModel() when $default != null:
-return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.name,_that.categoryId,_that.unitId,_that.sku,_that.fullDescription,_that.features,_that.specifications,_that.imageUrl,_that.price,_that.updatedAt);case _:
   return null;
 
 }
@@ -220,10 +218,9 @@ return $default(_that.id,_that.name,_that.categoryId,_that.unitId,_that.sku,_tha
 @JsonSerializable()
 
 class _ProductRequestModel implements ProductRequestModel {
-  const _ProductRequestModel({@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) this.id, this.name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) this.categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) this.unitId, this.sku, this.fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) final  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) final  Map<String, dynamic>? specifications, this.imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) this.price, this.createdAt, this.updatedAt}): _features = features,_specifications = specifications;
+  const _ProductRequestModel({this.name, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) this.categoryId, @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) this.unitId, this.sku, this.fullDescription, @JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) final  List<String>? features, @JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) final  Map<String, dynamic>? specifications, this.imageUrl, @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) this.price, this.updatedAt}): _features = features,_specifications = specifications;
   factory _ProductRequestModel.fromJson(Map<String, dynamic> json) => _$ProductRequestModelFromJson(json);
 
-@override@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) final  int? id;
 @override final  String? name;
 @override@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) final  int? categoryId;
 @override@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) final  int? unitId;
@@ -249,7 +246,6 @@ class _ProductRequestModel implements ProductRequestModel {
 
 @override final  String? imageUrl;
 @override@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) final  double? price;
-@override final  DateTime? createdAt;
 @override final  DateTime? updatedAt;
 
 /// Create a copy of ProductRequestModel
@@ -265,16 +261,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductRequestModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&(identical(other.sku, sku) || other.sku == sku)&&(identical(other.fullDescription, fullDescription) || other.fullDescription == fullDescription)&&const DeepCollectionEquality().equals(other._features, _features)&&const DeepCollectionEquality().equals(other._specifications, _specifications)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.price, price) || other.price == price)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductRequestModel&&(identical(other.name, name) || other.name == name)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&(identical(other.sku, sku) || other.sku == sku)&&(identical(other.fullDescription, fullDescription) || other.fullDescription == fullDescription)&&const DeepCollectionEquality().equals(other._features, _features)&&const DeepCollectionEquality().equals(other._specifications, _specifications)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.price, price) || other.price == price)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,categoryId,unitId,sku,fullDescription,const DeepCollectionEquality().hash(_features),const DeepCollectionEquality().hash(_specifications),imageUrl,price,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,name,categoryId,unitId,sku,fullDescription,const DeepCollectionEquality().hash(_features),const DeepCollectionEquality().hash(_specifications),imageUrl,price,updatedAt);
 
 @override
 String toString() {
-  return 'ProductRequestModel(id: $id, name: $name, categoryId: $categoryId, unitId: $unitId, sku: $sku, fullDescription: $fullDescription, features: $features, specifications: $specifications, imageUrl: $imageUrl, price: $price, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'ProductRequestModel(name: $name, categoryId: $categoryId, unitId: $unitId, sku: $sku, fullDescription: $fullDescription, features: $features, specifications: $specifications, imageUrl: $imageUrl, price: $price, updatedAt: $updatedAt)';
 }
 
 
@@ -285,7 +281,7 @@ abstract mixin class _$ProductRequestModelCopyWith<$Res> implements $ProductRequ
   factory _$ProductRequestModelCopyWith(_ProductRequestModel value, $Res Function(_ProductRequestModel) _then) = __$ProductRequestModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? id, String? name,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? categoryId,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? unitId, String? sku, String? fullDescription,@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? features,@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? specifications, String? imageUrl,@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? price, DateTime? createdAt, DateTime? updatedAt
+ String? name,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? categoryId,@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? unitId, String? sku, String? fullDescription,@JsonKey(fromJson: ProductRequestModel._nullableStringListFromJson) List<String>? features,@JsonKey(fromJson: ProductRequestModel._nullableStringMapFromJson) Map<String, dynamic>? specifications, String? imageUrl,@JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? price, DateTime? updatedAt
 });
 
 
@@ -302,10 +298,9 @@ class __$ProductRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of ProductRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? categoryId = freezed,Object? unitId = freezed,Object? sku = freezed,Object? fullDescription = freezed,Object? features = freezed,Object? specifications = freezed,Object? imageUrl = freezed,Object? price = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? categoryId = freezed,Object? unitId = freezed,Object? sku = freezed,Object? fullDescription = freezed,Object? features = freezed,Object? specifications = freezed,Object? imageUrl = freezed,Object? price = freezed,Object? updatedAt = freezed,}) {
   return _then(_ProductRequestModel(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,categoryId: freezed == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
 as int?,unitId: freezed == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
 as int?,sku: freezed == sku ? _self.sku : sku // ignore: cast_nullable_to_non_nullable
@@ -314,8 +309,7 @@ as String?,features: freezed == features ? _self._features : features // ignore:
 as List<String>?,specifications: freezed == specifications ? _self._specifications : specifications // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as double?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));
 }

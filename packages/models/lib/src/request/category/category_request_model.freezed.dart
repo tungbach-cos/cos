@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CategoryRequestModel {
 
-@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? get id; String? get name;
+ String? get name; DateTime? get updatedAt;
 /// Create a copy of CategoryRequestModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CategoryRequestModelCopyWith<CategoryRequestModel> get copyWith => _$CategoryRe
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CategoryRequestModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CategoryRequestModel&&(identical(other.name, name) || other.name == name)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode => Object.hash(runtimeType,name,updatedAt);
 
 @override
 String toString() {
-  return 'CategoryRequestModel(id: $id, name: $name)';
+  return 'CategoryRequestModel(name: $name, updatedAt: $updatedAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $CategoryRequestModelCopyWith<$Res>  {
   factory $CategoryRequestModelCopyWith(CategoryRequestModel value, $Res Function(CategoryRequestModel) _then) = _$CategoryRequestModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? id, String? name
+ String? name, DateTime? updatedAt
 });
 
 
@@ -65,11 +65,11 @@ class _$CategoryRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of CategoryRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 
@@ -154,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? id,  String? name)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CategoryRequestModel() when $default != null:
-return $default(_that.id,_that.name);case _:
+return $default(_that.name,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -175,10 +175,10 @@ return $default(_that.id,_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? id,  String? name)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name,  DateTime? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _CategoryRequestModel():
-return $default(_that.id,_that.name);case _:
+return $default(_that.name,_that.updatedAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +195,10 @@ return $default(_that.id,_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: ParsingHelper.nullableIntFromJson)  int? id,  String? name)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name,  DateTime? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _CategoryRequestModel() when $default != null:
-return $default(_that.id,_that.name);case _:
+return $default(_that.name,_that.updatedAt);case _:
   return null;
 
 }
@@ -210,11 +210,11 @@ return $default(_that.id,_that.name);case _:
 @JsonSerializable()
 
 class _CategoryRequestModel implements CategoryRequestModel {
-  const _CategoryRequestModel({@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) this.id, this.name});
+  const _CategoryRequestModel({this.name, this.updatedAt});
   factory _CategoryRequestModel.fromJson(Map<String, dynamic> json) => _$CategoryRequestModelFromJson(json);
 
-@override@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) final  int? id;
 @override final  String? name;
+@override final  DateTime? updatedAt;
 
 /// Create a copy of CategoryRequestModel
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +229,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CategoryRequestModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CategoryRequestModel&&(identical(other.name, name) || other.name == name)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode => Object.hash(runtimeType,name,updatedAt);
 
 @override
 String toString() {
-  return 'CategoryRequestModel(id: $id, name: $name)';
+  return 'CategoryRequestModel(name: $name, updatedAt: $updatedAt)';
 }
 
 
@@ -249,7 +249,7 @@ abstract mixin class _$CategoryRequestModelCopyWith<$Res> implements $CategoryRe
   factory _$CategoryRequestModelCopyWith(_CategoryRequestModel value, $Res Function(_CategoryRequestModel) _then) = __$CategoryRequestModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? id, String? name
+ String? name, DateTime? updatedAt
 });
 
 
@@ -266,11 +266,11 @@ class __$CategoryRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of CategoryRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? updatedAt = freezed,}) {
   return _then(_CategoryRequestModel(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 

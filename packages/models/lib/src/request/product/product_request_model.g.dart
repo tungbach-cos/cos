@@ -8,7 +8,6 @@ part of 'product_request_model.dart';
 
 _ProductRequestModel _$ProductRequestModelFromJson(Map<String, dynamic> json) =>
     _ProductRequestModel(
-      id: ParsingHelper.nullableIntFromJson(json['id']),
       name: json['name'] as String?,
       categoryId: ParsingHelper.nullableIntFromJson(json['category_id']),
       unitId: ParsingHelper.nullableIntFromJson(json['unit_id']),
@@ -22,9 +21,6 @@ _ProductRequestModel _$ProductRequestModelFromJson(Map<String, dynamic> json) =>
       ),
       imageUrl: json['image_url'] as String?,
       price: ParsingHelper.nullableDoubleFromJson(json['price']),
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
@@ -33,7 +29,6 @@ _ProductRequestModel _$ProductRequestModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ProductRequestModelToJson(
   _ProductRequestModel instance,
 ) => <String, dynamic>{
-  'id': ?instance.id,
   'name': ?instance.name,
   'category_id': ?instance.categoryId,
   'unit_id': ?instance.unitId,
@@ -43,6 +38,5 @@ Map<String, dynamic> _$ProductRequestModelToJson(
   'specifications': ?instance.specifications,
   'image_url': ?instance.imageUrl,
   'price': ?instance.price,
-  'created_at': ?instance.createdAt?.toIso8601String(),
   'updated_at': ?instance.updatedAt?.toIso8601String(),
 };

@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:models/src/utility/utility.dart';
-
 part 'category_request_model.freezed.dart';
 part 'category_request_model.g.dart';
 
@@ -10,8 +8,8 @@ part 'category_request_model.g.dart';
 abstract class CategoryRequestModel with _$CategoryRequestModel {
   /// Creates a [CategoryRequestModel].
   const factory CategoryRequestModel({
-    @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? id,
     String? name,
+    DateTime? updatedAt,
   }) = _CategoryRequestModel;
 
   /// Parses [CategoryRequestModel] from a JSON map.

@@ -13,7 +13,7 @@ final class UnitDatasourceImpl implements UnitDatasource {
 
   final SupabaseClient _supabase;
 
-  static const _query = 'id, name';
+  static const _query = '*';
   static const _table = 'unit';
 
   @override

@@ -10,6 +10,8 @@ abstract class UnitModel with _$UnitModel {
   const factory UnitModel({
     int? id,
     String? name,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _UnitModel;
 
   /// Parses [UnitModel] from a JSON map.

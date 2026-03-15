@@ -12,7 +12,6 @@ part 'product_request_model.g.dart';
 abstract class ProductRequestModel with _$ProductRequestModel {
   /// Creates a [ProductRequestModel] from JSON.
   const factory ProductRequestModel({
-    @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? id,
     String? name,
     @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? categoryId,
     @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? unitId,
@@ -24,7 +23,6 @@ abstract class ProductRequestModel with _$ProductRequestModel {
     Map<String, dynamic>? specifications,
     String? imageUrl,
     @JsonKey(fromJson: ParsingHelper.nullableDoubleFromJson) double? price,
-    DateTime? createdAt,
     DateTime? updatedAt,
   }) = _ProductRequestModel;
 

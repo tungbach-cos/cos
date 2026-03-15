@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:models/src/utility/utility.dart';
-
 part 'unit_request_model.freezed.dart';
 part 'unit_request_model.g.dart';
 
@@ -10,8 +8,8 @@ part 'unit_request_model.g.dart';
 abstract class UnitRequestModel with _$UnitRequestModel {
   /// Creates a [UnitRequestModel].
   const factory UnitRequestModel({
-    @JsonKey(fromJson: ParsingHelper.nullableIntFromJson) int? id,
     String? name,
+    DateTime? updatedAt,
   }) = _UnitRequestModel;
 
   /// Parses [UnitRequestModel] from a JSON map.

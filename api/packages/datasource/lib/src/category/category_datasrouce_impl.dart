@@ -13,7 +13,7 @@ final class CategoryDatasourceImpl implements CategoryDatasource {
 
   final SupabaseClient _supabase;
 
-  static const _query = 'id, name';
+  static const _query = '*';
   final _table = 'category';
 
   @override

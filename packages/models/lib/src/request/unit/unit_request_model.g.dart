@@ -8,9 +8,14 @@ part of 'unit_request_model.dart';
 
 _UnitRequestModel _$UnitRequestModelFromJson(Map<String, dynamic> json) =>
     _UnitRequestModel(
-      id: ParsingHelper.nullableIntFromJson(json['id']),
       name: json['name'] as String?,
+      updatedAt: json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$UnitRequestModelToJson(_UnitRequestModel instance) =>
-    <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+    <String, dynamic>{
+      'name': ?instance.name,
+      'updated_at': ?instance.updatedAt?.toIso8601String(),
+    };

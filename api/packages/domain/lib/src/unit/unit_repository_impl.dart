@@ -31,7 +31,10 @@ final class UnitRepositoryImpl implements UnitRepository {
   Future<UnitModel> updateUnit({
     required int id,
     required UnitRequestModel data,
-  }) => _unitDatasource.updateUnit(id: id, data: data.toJson());
+  }) {
+    final updateData = data.copyWith(updatedAt: DateTime.now().toUtc());
+    return _unitDatasource.updateUnit(id: id, data: updateData.toJson());
+  }
 
   @override
   Future<void> deleteUnit({required int id}) =>

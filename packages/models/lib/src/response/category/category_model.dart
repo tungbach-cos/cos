@@ -10,6 +10,8 @@ abstract class CategoryModel with _$CategoryModel {
   const factory CategoryModel({
     int? id,
     String? name,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _CategoryModel;
 
   /// Parses [CategoryModel] from a JSON map.
