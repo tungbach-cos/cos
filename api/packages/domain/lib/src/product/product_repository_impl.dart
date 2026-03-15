@@ -70,18 +70,7 @@ final class ProductRepositoryImpl implements ProductRepository {
     ) = await getProduct(
       id: id,
     );
-    var updateData = data.copyWith(
-      name: data.name ?? name,
-      categoryId: data.categoryId ?? categoryId,
-      unitId: data.unitId ?? unitId,
-      sku: data.sku ?? sku,
-      fullDescription: data.fullDescription ?? fullDescription,
-      features: data.features ?? features,
-      specifications: data.specifications ?? specifications,
-      price: data.price ?? price,
-      imageUrl: imageUrl,
-      updatedAt: DateTime.now().toUtc(),
-    );
+    var updateData = data.copyWith(updatedAt: DateTime.now().toUtc());
     if (image case FileRequestModel(
       :final bytes,
       :final contentType,
