@@ -1,4 +1,5 @@
 import 'package:datasource/datasource.dart';
+import 'package:domain/src/unit/exception/exception.dart';
 import 'package:domain/src/unit/unit_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:models/models.dart';
@@ -16,19 +17,21 @@ final class UnitRepositoryImpl implements UnitRepository {
   Future<List<UnitModel>> getUnits() => _unitDatasource.getUnits();
 
   @override
-  Future<UnitModel?> getUnit({required int id}) =>
-      _unitDatasource.getUnit(id: id);
+  Future<UnitModel> getUnit({required int id}) async {
+    final unit = await _unitDatasource.getUnit(id: id);
+    if (unit == null) throw UnitNotFoundException(id: id);
+    return unit;
+  }
 
   @override
-  Future<UnitModel> createUnit({
-    required Map<String, dynamic> data,
-  }) => _unitDatasource.createUnit(data: data);
+  Future<UnitModel> createUnit({required UnitRequestModel data}) =>
+      _unitDatasource.createUnit(data: data.toJson());
 
   @override
   Future<UnitModel> updateUnit({
     required int id,
-    required Map<String, dynamic> data,
-  }) => _unitDatasource.updateUnit(id: id, data: data);
+    required UnitRequestModel data,
+  }) => _unitDatasource.updateUnit(id: id, data: data.toJson());
 
   @override
   Future<void> deleteUnit({required int id}) =>

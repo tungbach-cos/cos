@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
-
 import 'package:domain/domain.dart';
+import 'package:models/models.dart';
 
 Future<Response> onRequest(
   RequestContext context,
@@ -27,39 +27,41 @@ Future<Response> onRequest(
 
 Future<Response> _getUnit(RequestContext context, int id) async {
   final unitRepository = context.read<UnitRepository>();
-  final unit = await unitRepository.getUnit(id: id);
-  if (unit == null) {
+  try {
+    final unit = await unitRepository.getUnit(id: id);
+    return Response.json(body: unit);
+  } on UnitNotFoundException {
     return Response(statusCode: HttpStatus.notFound);
+  } catch (e) {
+    return Response(statusCode: HttpStatus.internalServerError);
   }
-  return Response.json(body: unit.toJson());
 }
 
 Future<Response> _patchUnit(RequestContext context, int id) async {
-  final body = await context.request.json();
-  if (body is! Map<String, dynamic>) {
-    return Response(
-      statusCode: HttpStatus.badRequest,
-      body: 'Request body must be a JSON object',
-    );
-  }
-  final unitRepository = context.read<UnitRepository>();
   try {
-    final unit = await unitRepository.updateUnit(id: id, data: body);
-    return Response.json(body: unit.toJson());
+    final formData = await context.request.formData();
+    final data = UnitRequestModel.fromJson(formData.fields);
+
+    final unitRepository = context.read<UnitRepository>();
+    final unit = await unitRepository.updateUnit(id: id, data: data);
+    return Response.json(body: unit);
+  } on FormatException catch (e) {
+    return Response(statusCode: HttpStatus.badRequest, body: e.toString());
+  } on UnitNotFoundException {
+    return Response(statusCode: HttpStatus.notFound);
   } catch (e) {
-    return Response(
-      statusCode: HttpStatus.badRequest,
-      body: e.toString(),
-    );
+    return Response(statusCode: HttpStatus.internalServerError);
   }
 }
 
 Future<Response> _deleteUnit(RequestContext context, int id) async {
   final unitRepository = context.read<UnitRepository>();
-  final unit = await unitRepository.getUnit(id: id);
-  if (unit == null) {
+  try {
+    await unitRepository.deleteUnit(id: id);
+    return Response(statusCode: HttpStatus.noContent);
+  } on UnitNotFoundException {
     return Response(statusCode: HttpStatus.notFound);
+  } catch (e) {
+    return Response(statusCode: HttpStatus.internalServerError);
   }
-  await unitRepository.deleteUnit(id: id);
-  return Response(statusCode: HttpStatus.noContent);
 }

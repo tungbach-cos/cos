@@ -1,5 +1,6 @@
 import 'package:datasource/datasource.dart';
 import 'package:domain/src/category/category_repository.dart';
+import 'package:domain/src/category/exception/exception.dart';
 import 'package:injectable/injectable.dart';
 import 'package:models/models.dart';
 
@@ -19,19 +20,22 @@ final class CategoryRepositoryImpl implements CategoryRepository {
       _categoryDatasource.getCategories();
 
   @override
-  Future<CategoryModel?> getCategory({required int id}) =>
-      _categoryDatasource.getCategory(id: id);
+  Future<CategoryModel> getCategory({required int id}) async {
+    final category = await _categoryDatasource.getCategory(id: id);
+    if (category == null) throw CategoryNotFoundException(id: id);
+    return category;
+  }
 
   @override
   Future<CategoryModel> createCategory({
-    required Map<String, dynamic> data,
-  }) => _categoryDatasource.createCategory(data: data);
+    required CategoryRequestModel data,
+  }) => _categoryDatasource.createCategory(data: data.toJson());
 
   @override
   Future<CategoryModel> updateCategory({
     required int id,
-    required Map<String, dynamic> data,
-  }) => _categoryDatasource.updateCategory(id: id, data: data);
+    required CategoryRequestModel data,
+  }) => _categoryDatasource.updateCategory(id: id, data: data.toJson());
 
   @override
   Future<void> deleteCategory({required int id}) =>
